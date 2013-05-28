@@ -66,6 +66,7 @@ class Country(models.Model):
 
 class Source(models.Model, BaseModel):
 
+    country = models.ForeignKey(Country)
     short_name = models.CharField(max_length=512, verbose_name='Short name')
     long_name = models.CharField(max_length=512, verbose_name='Long name')
     year_of_publication = models.CharField(max_length=512,
@@ -83,6 +84,7 @@ class Source(models.Model, BaseModel):
 
 class Trend(models.Model, BaseModel):
 
+    country = models.ForeignKey(Country)
     code = models.CharField(max_length=256, verbose_name='Code')
     description = models.CharField(max_length=512, verbose_name='Description')
     source = models.ForeignKey(Source, related_name='trends',
@@ -105,6 +107,7 @@ class Trend(models.Model, BaseModel):
 
 class ThematicCategory(models.Model, BaseModel):
 
+    country = models.ForeignKey(Country)
     code = models.CharField(max_length=256, verbose_name='Code')
     description = models.CharField(max_length=512, verbose_name='Description')
 
@@ -117,6 +120,7 @@ class ThematicCategory(models.Model, BaseModel):
 
 class GeographicalScale(models.Model, BaseModel):
 
+    country = models.ForeignKey(Country)
     code = models.CharField(max_length=256, verbose_name='Code')
     description = models.CharField(max_length=512, verbose_name='Description')
 
@@ -129,6 +133,7 @@ class GeographicalScale(models.Model, BaseModel):
 
 class GeographicalCoverage(models.Model, BaseModel):
 
+    country = models.ForeignKey(Country)
     code = models.CharField(max_length=256, verbose_name='Code')
     description = models.CharField(max_length=512, verbose_name='Description')
 
@@ -141,6 +146,7 @@ class GeographicalCoverage(models.Model, BaseModel):
 
 class SteepCategory(models.Model, BaseModel):
 
+    country = models.ForeignKey(Country)
     code = models.CharField(max_length=256, verbose_name='Code')
     description = models.CharField(max_length=512, verbose_name='Description')
 
@@ -153,6 +159,7 @@ class SteepCategory(models.Model, BaseModel):
 
 class Timeline(models.Model, BaseModel):
 
+    country = models.ForeignKey(Country)
     title = models.CharField(max_length=512, verbose_name='Title')
 
     def __unicode__(self):
@@ -164,6 +171,7 @@ class Timeline(models.Model, BaseModel):
 
 class Indicator(models.Model, BaseModel):
 
+    country = models.ForeignKey(Country)
     code = models.CharField(max_length=256, verbose_name='Code')
     description = models.CharField(max_length=512, verbose_name='Description')
 
@@ -205,6 +213,7 @@ class Indicator(models.Model, BaseModel):
 
 class GMT(models.Model, BaseModel):
 
+    country = models.ForeignKey(Country)
     code = models.CharField(max_length=256, verbose_name='Code')
     steep_category = models.ForeignKey(SteepCategory,
                                        related_name='gmts',
@@ -232,6 +241,7 @@ class GMT(models.Model, BaseModel):
 
 class Interlink(models.Model, BaseModel):
 
+    country = models.ForeignKey(Country)
     gmt = models.ForeignKey(GMT, related_name='interlinks', verbose_name='GMT')
     trend = models.ForeignKey(Trend, related_name='interlinks',
                               verbose_name='Trend',
