@@ -1,6 +1,6 @@
 [
     {
-        "pk": "AL",
+        "pk": "al",
         "model": "flis.country",
         "fields": {
             "name": "Albania"
@@ -8,7 +8,7 @@
     },
 
     {
-        "pk": "AT",
+        "pk": "at",
         "model": "flis.country",
         "fields": {
             "name": "Austria"
@@ -16,7 +16,7 @@
     },
 
     {
-        "pk": "BE",
+        "pk": "be",
         "model": "flis.country",
         "fields": {
             "name": "Belgium"
@@ -24,7 +24,7 @@
     },
 
     {
-        "pk": "CZ",
+        "pk": "cz",
         "model": "flis.country",
         "fields": {
             "name": "Czech Republic"
@@ -32,7 +32,7 @@
     },
 
     {
-        "pk": "HU",
+        "pk": "hu",
         "model": "flis.country",
         "fields": {
             "name": "Hungary"
@@ -40,7 +40,7 @@
     },
 
     {
-        "pk": "HU",
+        "pk": "hu",
         "model": "flis.country",
         "fields": {
             "name": "Hungary"
@@ -48,7 +48,7 @@
     },
 
     {
-        "pk": "IR",
+        "pk": "ir",
         "model": "flis.country",
         "fields": {
             "name": "Ireland"
@@ -56,7 +56,7 @@
     },
 
     {
-        "pk": "ME",
+        "pk": "me",
         "model": "flis.country",
         "fields": {
             "name": "Montenegro"
@@ -64,7 +64,7 @@
     },
 
     {
-        "pk": "MK",
+        "pk": "mk",
         "model": "flis.country",
         "fields": {
             "name": "FYR Macedonia"
@@ -72,7 +72,7 @@
     },
 
     {
-        "pk": "PT",
+        "pk": "pt",
         "model": "flis.country",
         "fields": {
             "name": "Portugal"
@@ -80,7 +80,7 @@
     },
 
     {
-        "pk": "RO",
+        "pk": "ro",
         "model": "flis.country",
         "fields": {
             "name": "Romania"
@@ -88,7 +88,7 @@
     },
 
     {
-        "pk": "SK",
+        "pk": "sk",
         "model": "flis.country",
         "fields": {
             "name": "Slovakia"
@@ -96,7 +96,7 @@
     },
 
     {
-        "pk": "XK",
+        "pk": "xk",
         "model": "flis.country",
         "fields": {
             "name": "Kosovo"

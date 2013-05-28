@@ -23,10 +23,6 @@ class Interlinks(ListView):
     template_name = 'interlinks/interlinks.html'
     paginate_by = PER_PAGE
 
-    @method_decorator(auth.is_view_excluded('interlinks'))
-    def dispatch(self, *args, **kwargs):
-        return super(Interlinks, self).dispatch(*args, **kwargs)
-
 
 class Interlink(DetailView):
 
@@ -34,19 +30,11 @@ class Interlink(DetailView):
     template_name = 'interlinks/interlink.html'
     paginate_by = PER_PAGE
 
-    @method_decorator(auth.is_view_excluded('interlinks'))
-    def dispatch(self, *args, **kwargs):
-        return super(Interlink, self).dispatch(*args, **kwargs)
-
 
 class InterlinkCreate(CreateView):
 
     model = models.Interlink
     template_name = 'interlinks/interlink_edit.html'
-
-    @method_decorator(auth.is_view_excluded('interlinks'))
-    def dispatch(self, *args, **kwargs):
-        return super(InterlinkCreate, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
         context = super(InterlinkCreate, self).get_context_data(*args, **kwargs)
@@ -57,10 +45,6 @@ class InterlinkCreate(CreateView):
 class InterlinkEdit(UpdateView):
     model = models.Interlink
     template_name = 'interlinks/interlink_edit.html'
-
-    @method_decorator(auth.is_view_excluded('interlinks'))
-    def dispatch(self, *args, **kwargs):
-        return super(InterlinkEdit, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
         context = super(InterlinkEdit, self).get_context_data(*args, **kwargs)
@@ -73,10 +57,6 @@ class InterlinkDelete(DeleteView):
     model = models.Interlink
     success_url = reverse_lazy('interlinks')
 
-    @method_decorator(auth.is_view_excluded('interlinks'))
-    def dispatch(self, *args, **kwargs):
-        return super(InterlinkDelete, self).dispatch(*args, **kwargs)
-
 
 class Sources(ListView):
 
@@ -85,29 +65,16 @@ class Sources(ListView):
     paginate_by = PER_PAGE
 
 
-    @method_decorator(auth.is_view_excluded('sources'))
-    def dispatch(self, *args, **kwargs):
-        return super(Sources, self).dispatch(*args, **kwargs)
-
-
 class Source(DetailView):
 
     model = models.Source
     template_name = 'sources/source.html'
-
-    @method_decorator(auth.is_view_excluded('sources'))
-    def dispatch(self, *args, **kwargs):
-        return super(Source, self).dispatch(*args, **kwargs)
 
 
 class SourceCreate(CreateView):
 
     template_name = 'sources/source_edit.html'
     model = models.Source
-
-    @method_decorator(auth.is_view_excluded('sources'))
-    def dispatch(self, *args, **kwargs):
-        return super(SourceCreate, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
         context = super(SourceCreate, self).get_context_data(*args, **kwargs)
@@ -120,10 +87,6 @@ class SourceEdit(UpdateView):
     template_name = 'sources/source_edit.html'
     model = models.Source
 
-    @method_decorator(auth.is_view_excluded('sources'))
-    def dispatch(self, *args, **kwargs):
-        return super(SourceEdit, self).dispatch(*args, **kwargs)
-
     def get_context_data(self, *args, **kwargs):
         context = super(SourceEdit, self).get_context_data(*args, **kwargs)
         context['cancel_url'] = context['object'].get_absolute_url()
@@ -135,10 +98,6 @@ class SourceDelete(DeleteView):
     model = models.Source
     success_url = reverse_lazy('sources')
 
-    @method_decorator(auth.is_view_excluded('sources'))
-    def dispatch(self, *args, **kwargs):
-        return super(SourceDelete, self).dispatch(*args, **kwargs)
-
 
 class GMTs(ListView):
 
@@ -146,29 +105,16 @@ class GMTs(ListView):
     template_name = 'gmt/gmts.html'
     paginate_by = PER_PAGE
 
-    @method_decorator(auth.is_view_excluded('gmts'))
-    def dispatch(self, *args, **kwargs):
-        return super(GMTs, self).dispatch(*args, **kwargs)
-
-
 class GMT(DetailView):
 
     model = models.GMT
     template_name = 'gmt/gmt.html'
-
-    @method_decorator(auth.is_view_excluded('gmts'))
-    def dispatch(self, *args, **kwargs):
-        return super(GMT, self).dispatch(*args, **kwargs)
 
 
 class GMTCreate(CreateView):
 
     model = models.GMT
     template_name = 'gmt/gmt_edit.html'
-
-    @method_decorator(auth.is_view_excluded('gmts'))
-    def dispatch(self, *args, **kwargs):
-        return super(GMTCreate, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
         context = super(GMTCreate, self).get_context_data(*args, **kwargs)
@@ -181,10 +127,6 @@ class GMTEdit(UpdateView):
     model = models.GMT
     template_name = 'gmt/gmt_edit.html'
 
-    @method_decorator(auth.is_view_excluded('gmts'))
-    def dispatch(self, *args, **kwargs):
-        return super(GMTEdit, self).dispatch(*args, **kwargs)
-
     def get_context_data(self, *args, **kwargs):
         context = super(GMTEdit, self).get_context_data(*args, **kwargs)
         context['cancel_url'] = context['object'].get_absolute_url()
@@ -196,19 +138,11 @@ class GMTDelete(DeleteView):
     model = models.GMT
     success_url = reverse_lazy('gmts')
 
-    @method_decorator(auth.is_view_excluded('gmts'))
-    def dispatch(self, *args, **kwargs):
-        return super(GMTDelete, self).dispatch(*args, **kwargs)
-
 
 class Indicators(ListView):
 
     model = models.Indicator
     template_name = 'indicators/indicators.html'
-
-    @method_decorator(auth.is_view_excluded('indicators'))
-    def dispatch(self, *args, **kwargs):
-        return super(Indicators, self).dispatch(*args, **kwargs)
 
 
 class Indicator(DetailView):
@@ -216,19 +150,11 @@ class Indicator(DetailView):
     model = models.Indicator
     template_name = 'indicators/indicator.html'
 
-    @method_decorator(auth.is_view_excluded('indicators'))
-    def dispatch(self, *args, **kwargs):
-        return super(Indicator, self).dispatch(*args, **kwargs)
-
 
 class IndicatorCreate(CreateView):
 
     model = models.Indicator
     template_name = 'indicators/indicator_edit.html'
-
-    @method_decorator(auth.is_view_excluded('indicators'))
-    def dispatch(self, *args, **kwargs):
-        return super(IndicatorCreate, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
         context = super(IndicatorCreate, self).get_context_data(*args, **kwargs)
@@ -241,10 +167,6 @@ class IndicatorEdit(UpdateView):
     model = models.Indicator
     template_name = 'indicators/indicator_edit.html'
 
-    @method_decorator(auth.is_view_excluded('indicators'))
-    def dispatch(self, *args, **kwargs):
-        return super(IndicatorEdit, self).dispatch(*args, **kwargs)
-
     def get_context_data(self, *args, **kwargs):
         context = super(IndicatorEdit, self).get_context_data(*args, **kwargs)
         context['cancel_url'] = context['object'].get_absolute_url()
@@ -256,10 +178,6 @@ class IndicatorDelete(DeleteView):
     model = models.Indicator
     success_url = reverse_lazy('indicators')
 
-    @method_decorator(auth.is_view_excluded('indicators'))
-    def dispatch(self, *args, **kwargs):
-        return super(IndicatorDelete, self).dispatch(*args, **kwargs)
-
 
 class Trends(ListView):
 
@@ -267,29 +185,17 @@ class Trends(ListView):
     template_name = 'trends/trends.html'
     paginate_by = PER_PAGE
 
-    @method_decorator(auth.is_view_excluded('trends'))
-    def dispatch(self, *args, **kwargs):
-        return super(Trends, self).dispatch(*args, **kwargs)
-
 
 class Trend(DetailView):
 
     model = models.Trend
     template_name = 'trends/trend.html'
 
-    @method_decorator(auth.is_view_excluded('trend'))
-    def dispatch(self, *args, **kwargs):
-        return super(Trend, self).dispatch(*args, **kwargs)
-
 
 class TrendCreate(CreateView):
 
     model = models.Trend
     template_name = 'trends/trend_edit.html'
-
-    @method_decorator(auth.is_view_excluded('trend'))
-    def dispatch(self, *args, **kwargs):
-        return super(TrendCreate, self).dispatch(*args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
         context = super(TrendCreate, self).get_context_data(*args, **kwargs)
@@ -302,10 +208,6 @@ class TrendEdit(UpdateView):
     model = models.Trend
     template_name = 'trends/trend_edit.html'
 
-    @method_decorator(auth.is_view_excluded('trend'))
-    def dispatch(self, *args, **kwargs):
-        return super(TrendEdit, self).dispatch(*args, **kwargs)
-
     def get_context_data(self, *args, **kwargs):
         context = super(TrendEdit, self).get_context_data(*args, **kwargs)
         context['cancel_url'] = context['object'].get_absolute_url()
@@ -316,10 +218,6 @@ class TrendDelete(DeleteView):
 
     model = models.Trend
     success_url = reverse_lazy('trends')
-
-    @method_decorator(auth.is_view_excluded('trend'))
-    def dispatch(self, *args, **kwargs):
-        return super(TrendDelete, self).dispatch(*args, **kwargs)
 
 
 class ThematicCategories(ListView):
@@ -389,6 +287,7 @@ class GeographicalScaleCreate(CreateView):
         context['cancel_url'] = reverse_lazy('geographical_scales')
         return context
 
+
 class GeographicalScaleEdit(UpdateView):
 
     model = models.GeographicalScale
@@ -444,7 +343,6 @@ class GeographicalCoverageDelete(DeleteView):
 
     model = models.GeographicalCoverage
     success_url = reverse_lazy('geographical_coverages')
-
 
 
 class SteepCategories(ListView):
