@@ -1,0 +1,113 @@
+[
+    {
+        "pk": "AL",
+        "model": "flis.country",
+        "fields": {
+            "name": "Albania"
+        }
+    },
+
+    {
+        "pk": "AT",
+        "model": "flis.country",
+        "fields": {
+            "name": "Austria"
+        }
+    },
+
+    {
+        "pk": "BE",
+        "model": "flis.country",
+        "fields": {
+            "name": "Belgium"
+        }
+    },
+
+    {
+        "pk": "CZ",
+        "model": "flis.country",
+        "fields": {
+            "name": "Czech Republic"
+        }
+    },
+
+    {
+        "pk": "HU",
+        "model": "flis.country",
+        "fields": {
+            "name": "Hungary"
+        }
+    },
+
+    {
+        "pk": "HU",
+        "model": "flis.country",
+        "fields": {
+            "name": "Hungary"
+        }
+    },
+
+    {
+        "pk": "IR",
+        "model": "flis.country",
+        "fields": {
+            "name": "Ireland"
+        }
+    },
+
+    {
+        "pk": "ME",
+        "model": "flis.country",
+        "fields": {
+            "name": "Montenegro"
+        }
+    },
+
+    {
+        "pk": "MK",
+        "model": "flis.country",
+        "fields": {
+            "name": "FYR Macedonia"
+        }
+    },
+
+    {
+        "pk": "PT",
+        "model": "flis.country",
+        "fields": {
+            "name": "Portugal"
+        }
+    },
+
+    {
+        "pk": "RO",
+        "model": "flis.country",
+        "fields": {
+            "name": "Romania"
+        }
+    },
+
+    {
+        "pk": "SK",
+        "model": "flis.country",
+        "fields": {
+            "name": "Slovakia"
+        }
+    },
+
+    {
+        "pk": "XK",
+        "model": "flis.country",
+        "fields": {
+            "name": "Kosovo"
+        }
+    },
+
+    {
+        "pk": "article-5-contribution",
+        "model": "flis.country",
+        "fields": {
+            "name": "GMT EU Ressource Efficiency"
+        }
+    }
+]

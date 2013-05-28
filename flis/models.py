@@ -55,6 +55,15 @@ class BaseModel():
         return mark_safe(page)
 
 
+class Country(models.Model):
+
+  iso = models.CharField(max_length=128, primary_key=True)
+  name = models.CharField(max_length=256)
+
+  def __unicode__(self):
+    return self.name
+
+
 class Source(models.Model, BaseModel):
 
     short_name = models.CharField(max_length=512, verbose_name='Short name')
