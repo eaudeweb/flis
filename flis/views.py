@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.core.urlresolvers import reverse, reverse_lazy
+from django.core.urlresolvers import reverse
 
 from flis import models, auth
 
@@ -37,8 +37,9 @@ class InterlinkCreate(CreateView):
     template_name = 'interlinks/interlink_edit.html'
 
     def get_context_data(self, *args, **kwargs):
+        country = self.request.country
         context = super(InterlinkCreate, self).get_context_data(*args, **kwargs)
-        context['cancel_url'] = reverse_lazy('interlinks')
+        context['cancel_url'] = reverse('interlinks', kwargs={'country': country})
         return context
 
 
@@ -55,7 +56,10 @@ class InterlinkEdit(UpdateView):
 class InterlinkDelete(DeleteView):
 
     model = models.Interlink
-    success_url = reverse_lazy('interlinks')
+
+    def get_success_url(self):
+        country = self.request.country
+        return reverse('interlinks', kwargs={'country': country})
 
 
 class Sources(ListView):
@@ -77,8 +81,9 @@ class SourceCreate(CreateView):
     model = models.Source
 
     def get_context_data(self, *args, **kwargs):
+        country = self.request.country
         context = super(SourceCreate, self).get_context_data(*args, **kwargs)
-        context['cancel_url'] = reverse_lazy('sources')
+        context['cancel_url'] = reverse('sources', kwargs={'country': country})
         return context
 
 
@@ -96,7 +101,10 @@ class SourceEdit(UpdateView):
 class SourceDelete(DeleteView):
 
     model = models.Source
-    success_url = reverse_lazy('sources')
+
+    def get_success_url(self):
+        country = self.request.country
+        return reverse('sources', kwargs={'country': country})
 
 
 class GMTs(ListView):
@@ -117,8 +125,9 @@ class GMTCreate(CreateView):
     template_name = 'gmt/gmt_edit.html'
 
     def get_context_data(self, *args, **kwargs):
+        country = self.request.country
         context = super(GMTCreate, self).get_context_data(*args, **kwargs)
-        context['cancel_url'] = reverse_lazy('gmts')
+        context['cancel_url'] = reverse('gmts', kwargs={'country': country})
         return context
 
 
@@ -136,7 +145,10 @@ class GMTEdit(UpdateView):
 class GMTDelete(DeleteView):
 
     model = models.GMT
-    success_url = reverse_lazy('gmts')
+
+    def get_success_url(self):
+        country = self.request.country
+        return reverse('gmts', kwargs={'country': country})
 
 
 class Indicators(ListView):
@@ -157,8 +169,9 @@ class IndicatorCreate(CreateView):
     template_name = 'indicators/indicator_edit.html'
 
     def get_context_data(self, *args, **kwargs):
+        country = self.request.country
         context = super(IndicatorCreate, self).get_context_data(*args, **kwargs)
-        context['cancel_url'] = reverse_lazy('indicators')
+        context['cancel_url'] = reverse('indicators', kwargs={'country': country})
         return context
 
 
@@ -176,7 +189,10 @@ class IndicatorEdit(UpdateView):
 class IndicatorDelete(DeleteView):
 
     model = models.Indicator
-    success_url = reverse_lazy('indicators')
+
+    def get_success_url(self):
+        country = self.request.country
+        return reverse('indicators', kwargs={'country': country})
 
 
 class Trends(ListView):
@@ -198,8 +214,9 @@ class TrendCreate(CreateView):
     template_name = 'trends/trend_edit.html'
 
     def get_context_data(self, *args, **kwargs):
+        country = self.request.country
         context = super(TrendCreate, self).get_context_data(*args, **kwargs)
-        context['cancel_url'] = reverse_lazy('trends')
+        context['cancel_url'] = reverse('trends', kwargs={'country': country})
         return context
 
 
@@ -217,7 +234,10 @@ class TrendEdit(UpdateView):
 class TrendDelete(DeleteView):
 
     model = models.Trend
-    success_url = reverse_lazy('trends')
+
+    def get_success_url(self):
+        country = self.request.country
+        return reverse('trends', kwargs={'country': country})
 
 
 class ThematicCategories(ListView):
@@ -232,8 +252,9 @@ class ThematicCategory(DetailView):
     template_name = 'thematic_categories/thematic_category.html'
 
     def get_context_data(self, *args, **kwargs):
+        country = self.request.country
         context = super(ThematicCategory, self).get_context_data(*args, **kwargs)
-        context['cancel_url'] = reverse_lazy('trends')
+        context['cancel_url'] = reverse('trends', kwargs={'country': country})
         return context
 
 
@@ -243,8 +264,9 @@ class ThematicCategoryCreate(CreateView):
     template_name = 'thematic_categories/thematic_category_edit.html'
 
     def get_context_data(self, *args, **kwargs):
+        country = self.request.country
         context = super(ThematicCategoryCreate, self).get_context_data(*args, **kwargs)
-        context['cancel_url'] = reverse_lazy('thematic_categories')
+        context['cancel_url'] = reverse('thematic_categories', kwargs={'country': country})
         return context
 
 
@@ -262,7 +284,10 @@ class ThematicCategoryEdit(UpdateView):
 class ThematicCategoryDelete(DeleteView):
 
     model = models.ThematicCategory
-    success_url = reverse_lazy('thematic_categories')
+
+    def get_success_url(self):
+        country = self.request.country
+        return reverse('thematic_categories', kwargs={'country': country})
 
 
 class GeographicalScales(ListView):
@@ -283,8 +308,9 @@ class GeographicalScaleCreate(CreateView):
     template_name = 'geographical_scales/geographical_scale_edit.html'
 
     def get_context_data(self, *args, **kwargs):
+        country = self.request.country
         context = super(GeographicalScaleCreate, self).get_context_data(*args, **kwargs)
-        context['cancel_url'] = reverse_lazy('geographical_scales')
+        context['cancel_url'] = reverse('geographical_scales', kwargs={'country': country})
         return context
 
 
@@ -302,7 +328,9 @@ class GeographicalScaleEdit(UpdateView):
 class GeographicalScaleDelete(DeleteView):
 
     model = models.GeographicalScale
-    success_url = reverse_lazy('geographical_scales')
+    def get_success_url(self):
+        country = self.request.country
+        return reverse('geographical_scales', kwargs={'country': country})
 
 
 class GeographicalCoverages(ListView):
@@ -323,8 +351,9 @@ class GeographicalCoverageCreate(CreateView):
     template_name = 'geographical_coverages/geographical_coverage_edit.html'
 
     def get_context_data(self, *args, **kwargs):
+        country = self.request.country
         context = super(GeographicalCoverageCreate, self).get_context_data(*args, **kwargs)
-        context['cancel_url'] = reverse_lazy('geographical_coverages')
+        context['cancel_url'] = reverse('geographical_coverages', kwargs={'country': country})
         return context
 
 
@@ -342,7 +371,10 @@ class GeographicalCoverageEdit(UpdateView):
 class GeographicalCoverageDelete(DeleteView):
 
     model = models.GeographicalCoverage
-    success_url = reverse_lazy('geographical_coverages')
+
+    def get_success_url(self):
+        country = self.request.country
+        return reverse('geographical_coverages', kwargs={'country': country})
 
 
 class SteepCategories(ListView):
@@ -363,8 +395,9 @@ class SteepCategoryCreate(CreateView):
     template_name = 'steep_categories/steep_category_edit.html'
 
     def get_context_data(self, *args, **kwargs):
+        country = self.request.country
         context = super(SteepCategoryCreate, self).get_context_data(*args, **kwargs)
-        context['cancel_url'] = reverse_lazy('steep_categories')
+        context['cancel_url'] = reverse('steep_categories', kwargs={'country': country})
         return context
 
 
@@ -382,7 +415,10 @@ class SteepCategoryEdit(UpdateView):
 class SteepCategoryDelete(DeleteView):
 
     model = models.SteepCategory
-    success_url = reverse_lazy('steep_categories')
+
+    def get_success_url(self):
+        country = self.request.country
+        return reverse('steep_categories', kwargs={'country': country})
 
 
 class Timelines(ListView):
@@ -403,8 +439,9 @@ class TimelineCreate(CreateView):
     template_name = 'timelines/timeline_edit.html'
 
     def get_context_data(self, *args, **kwargs):
+        country = self.request.country
         context = super(TimelineCreate, self).get_context_data(*args, **kwargs)
-        context['cancel_url'] = reverse_lazy('timelines')
+        context['cancel_url'] = reverse('timelines', kwargs={'country': country})
         return context
 
 
@@ -422,4 +459,6 @@ class TimelineEdit(UpdateView):
 class TimelineDelete(DeleteView):
 
     model = models.Timeline
-    success_url = reverse_lazy('timelines')
+    def get_success_url(self):
+        country = self.request.country
+        return reverse('timelines', kwargs={'country': country})
