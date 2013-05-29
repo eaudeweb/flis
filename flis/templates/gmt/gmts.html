@@ -28,7 +28,7 @@
     {% for object in object_list %}
     <tr>
       <td>
-        <a href="{% url gmt_view object.id country=country %}">
+        <a href="{% url gmt_view pk=object.id country=country %}">
           {{ object }}</a>
       </td>
     </tr>

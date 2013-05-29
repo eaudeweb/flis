@@ -28,7 +28,7 @@
     {% for source in object_list %}
     <tr>
       <td>
-        <a href="{% url source_view source.id country=country %}">
+        <a href="{% url source_view pk=source.id country=country %}">
           {{ source.short_name }} ({{ source.long_name }})</a>
       </td>
     </tr>

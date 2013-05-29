@@ -28,7 +28,7 @@
     {% for trend in object_list %}
     <tr>
       <td>
-        <a href="{% url trend_view trend.id country=country %}">
+        <a href="{% url trend_view pk=trend.id country=country %}">
           {{ trend.description }}</a>
       </td>
     </tr>

@@ -28,7 +28,7 @@
     {% for thematic_category in object_list %}
     <tr>
       <td>
-        <a href="{% url thematic_category_view thematic_category.id country=country %}">{{ thematic_category.code }} ({{ thematic_category.description }})</a>
+        <a href="{% url thematic_category_view pk=thematic_category.id country=country %}">{{ thematic_category.code }} ({{ thematic_category.description }})</a>
       </td>
     </tr>
     {% endfor %}

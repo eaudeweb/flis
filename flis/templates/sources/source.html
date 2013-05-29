@@ -5,8 +5,7 @@
 
 <div class="btn-toolbar">
   <div class="btn-group">
-    <a class="btn" href="{% url source_edit object.id country=country %}">
-      Edit {{ object.short_name }}</a>
+    <a class="btn" href="{% url source_edit pk=object.id country=country %}">Edit {{ object.short_name }}</a>
   </div>
 
   <div class="btn-group">

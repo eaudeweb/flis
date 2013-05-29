@@ -79,7 +79,10 @@ class Source(models.Model, BaseModel):
         return self.short_name
 
     def get_absolute_url(self):
-        return reverse('source_view', kwargs={'pk': self.pk})
+        return reverse('source_view', kwargs={
+          'pk': self.pk,
+          'country': self.country,
+        })
 
 
 class Trend(models.Model, BaseModel):
@@ -102,7 +105,10 @@ class Trend(models.Model, BaseModel):
         return self.description
 
     def get_absolute_url(self):
-        return reverse('trend_view', kwargs={'pk': self.pk})
+        return reverse('trend_view', kwargs={
+          'pk': self.pk,
+          'country': self.country,
+        })
 
 
 class ThematicCategory(models.Model, BaseModel):
@@ -115,7 +121,10 @@ class ThematicCategory(models.Model, BaseModel):
         return '%s (%s)' % (self.code, self.description)
 
     def get_absolute_url(self):
-        return reverse('thematic_category_view', kwargs={'pk': self.pk})
+        return reverse('thematic_category_view', kwargs={
+          'pk': self.pk,
+          'country': self.country,
+        })
 
 
 class GeographicalScale(models.Model, BaseModel):
@@ -128,7 +137,10 @@ class GeographicalScale(models.Model, BaseModel):
         return '%s (%s)' % (self.code, self.description)
 
     def get_absolute_url(self):
-        return reverse('geographical_scale_view', kwargs={'pk': self.pk})
+        return reverse('geographical_scale_view', kwargs={
+          'pk': self.pk,
+          'country': self.country,
+        })
 
 
 class GeographicalCoverage(models.Model, BaseModel):
@@ -141,7 +153,10 @@ class GeographicalCoverage(models.Model, BaseModel):
         return '%s (%s)' % (self.code, self.description)
 
     def get_absolute_url(self):
-        return reverse('geographical_coverage_view', kwargs={'pk': self.pk})
+        return reverse('geographical_coverage_view', kwargs={
+          'pk': self.pk,
+          'country': self.country,
+        })
 
 
 class SteepCategory(models.Model, BaseModel):
@@ -154,7 +169,10 @@ class SteepCategory(models.Model, BaseModel):
         return '%s (%s)' % (self.code, self.description)
 
     def get_absolute_url(self):
-        return reverse('steep_category_view', kwargs={'pk': self.pk})
+        return reverse('steep_category_view', kwargs={
+          'pk': self.pk,
+          'country': self.country,
+        })
 
 
 class Timeline(models.Model, BaseModel):
@@ -166,7 +184,10 @@ class Timeline(models.Model, BaseModel):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('timeline_view', kwargs={'pk': self.pk})
+        return reverse('timeline_view', kwargs={
+          'pk': self.pk,
+          'country': self.country,
+        })
 
 
 class Indicator(models.Model, BaseModel):
@@ -208,7 +229,10 @@ class Indicator(models.Model, BaseModel):
         return self.code
 
     def get_absolute_url(self):
-        return reverse('indicator_view', kwargs={'pk': self.pk})
+        return reverse('indicator_view', kwargs={
+          'pk': self.pk,
+          'country': self.country,
+        })
 
 
 class GMT(models.Model, BaseModel):
@@ -236,7 +260,11 @@ class GMT(models.Model, BaseModel):
         return self.code
 
     def get_absolute_url(self):
-        return reverse('gmt_view', kwargs={'pk': self.pk})
+
+      return reverse('gmt_view', kwargs={
+        'pk': self.pk,
+        'country': self.country
+      })
 
 
 class Interlink(models.Model, BaseModel):
@@ -266,6 +294,9 @@ class Interlink(models.Model, BaseModel):
         return self.gmt.code
 
     def get_absolute_url(self):
-        return reverse('interlink_view', kwargs={'pk': self.pk})
+        return reverse('interlink_view', kwargs={
+          'pk': self.pk,
+          'country': self.country,
+        })
 
 

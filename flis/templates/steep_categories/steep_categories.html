@@ -28,8 +28,7 @@
     {% for object in object_list %}
     <tr>
       <td>
-        <a href="{% url steep_category_view object.id country=country %}">
-          {{ object.code }} ({{ object.description }})</a>
+        <a href="{% url steep_category_view pk=object.id country=country %}">{{ object.code }} ({{ object.description }})</a>
       </td>
     </tr>
     {% endfor %}

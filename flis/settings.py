@@ -103,6 +103,7 @@ MIDDLEWARE_CLASSES = (
     'flis.frame.RequestMiddleware',
     'flis.frame.UserMiddleware',
     'flis.middleware.CountryMiddleware',
+    'django_tools.middlewares.ThreadLocal.ThreadLocalMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',

@@ -11,7 +11,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse
 
-from flis import models, auth
+from flis import models, auth, forms
 
 
 PER_PAGE = 25
@@ -35,6 +35,7 @@ class InterlinkCreate(CreateView):
 
     model = models.Interlink
     template_name = 'interlinks/interlink_edit.html'
+    form_class = forms.InterlinkForm
 
     def get_context_data(self, *args, **kwargs):
         country = self.request.country
@@ -44,8 +45,10 @@ class InterlinkCreate(CreateView):
 
 
 class InterlinkEdit(UpdateView):
+
     model = models.Interlink
     template_name = 'interlinks/interlink_edit.html'
+    form_class = forms.InterlinkForm
 
     def get_context_data(self, *args, **kwargs):
         context = super(InterlinkEdit, self).get_context_data(*args, **kwargs)
@@ -79,6 +82,7 @@ class SourceCreate(CreateView):
 
     template_name = 'sources/source_edit.html'
     model = models.Source
+    form_class = forms.SourceForm
 
     def get_context_data(self, *args, **kwargs):
         country = self.request.country
@@ -91,6 +95,7 @@ class SourceEdit(UpdateView):
 
     template_name = 'sources/source_edit.html'
     model = models.Source
+    form_class = forms.SourceForm
 
     def get_context_data(self, *args, **kwargs):
         context = super(SourceEdit, self).get_context_data(*args, **kwargs)
@@ -113,6 +118,7 @@ class GMTs(ListView):
     template_name = 'gmt/gmts.html'
     paginate_by = PER_PAGE
 
+
 class GMT(DetailView):
 
     model = models.GMT
@@ -123,6 +129,7 @@ class GMTCreate(CreateView):
 
     model = models.GMT
     template_name = 'gmt/gmt_edit.html'
+    form_class = forms.GMTForm
 
     def get_context_data(self, *args, **kwargs):
         country = self.request.country
@@ -135,6 +142,7 @@ class GMTEdit(UpdateView):
 
     model = models.GMT
     template_name = 'gmt/gmt_edit.html'
+    form_class = forms.GMTForm
 
     def get_context_data(self, *args, **kwargs):
         context = super(GMTEdit, self).get_context_data(*args, **kwargs)
@@ -167,6 +175,7 @@ class IndicatorCreate(CreateView):
 
     model = models.Indicator
     template_name = 'indicators/indicator_edit.html'
+    form_class = forms.IndicatorForm
 
     def get_context_data(self, *args, **kwargs):
         country = self.request.country
@@ -179,6 +188,7 @@ class IndicatorEdit(UpdateView):
 
     model = models.Indicator
     template_name = 'indicators/indicator_edit.html'
+    form_class = forms.IndicatorForm
 
     def get_context_data(self, *args, **kwargs):
         context = super(IndicatorEdit, self).get_context_data(*args, **kwargs)
@@ -212,6 +222,7 @@ class TrendCreate(CreateView):
 
     model = models.Trend
     template_name = 'trends/trend_edit.html'
+    form_class = forms.TrendForm
 
     def get_context_data(self, *args, **kwargs):
         country = self.request.country
@@ -224,6 +235,7 @@ class TrendEdit(UpdateView):
 
     model = models.Trend
     template_name = 'trends/trend_edit.html'
+    form_class = forms.TrendForm
 
     def get_context_data(self, *args, **kwargs):
         context = super(TrendEdit, self).get_context_data(*args, **kwargs)
@@ -262,6 +274,7 @@ class ThematicCategoryCreate(CreateView):
 
     model = models.ThematicCategory
     template_name = 'thematic_categories/thematic_category_edit.html'
+    form_class = forms.ThematicCategoryForm
 
     def get_context_data(self, *args, **kwargs):
         country = self.request.country
@@ -274,6 +287,7 @@ class ThematicCategoryEdit(UpdateView):
 
     model = models.ThematicCategory
     template_name = 'thematic_categories/thematic_category_edit.html'
+    form_class = forms.ThematicCategoryForm
 
     def get_context_data(self, *args, **kwargs):
         context = super(ThematicCategoryEdit, self).get_context_data(*args, **kwargs)
@@ -306,6 +320,7 @@ class GeographicalScaleCreate(CreateView):
 
     model = models.GeographicalScale
     template_name = 'geographical_scales/geographical_scale_edit.html'
+    form_class = forms.GeographicalScaleForm
 
     def get_context_data(self, *args, **kwargs):
         country = self.request.country
@@ -318,6 +333,7 @@ class GeographicalScaleEdit(UpdateView):
 
     model = models.GeographicalScale
     template_name = 'geographical_scales/geographical_scale_edit.html'
+    form_class = forms.GeographicalScaleForm
 
     def get_context_data(self, *args, **kwargs):
         context = super(GeographicalScaleEdit, self).get_context_data(*args, **kwargs)
@@ -328,6 +344,7 @@ class GeographicalScaleEdit(UpdateView):
 class GeographicalScaleDelete(DeleteView):
 
     model = models.GeographicalScale
+
     def get_success_url(self):
         country = self.request.country
         return reverse('geographical_scales', kwargs={'country': country})
@@ -349,6 +366,7 @@ class GeographicalCoverageCreate(CreateView):
 
     model = models.GeographicalCoverage
     template_name = 'geographical_coverages/geographical_coverage_edit.html'
+    form_class = forms.GeographicalCoverageForm
 
     def get_context_data(self, *args, **kwargs):
         country = self.request.country
@@ -361,6 +379,7 @@ class GeographicalCoverageEdit(UpdateView):
 
     model = models.GeographicalCoverage
     template_name = 'geographical_coverages/geographical_coverage_edit.html'
+    form_class = forms.GeographicalCoverageForm
 
     def get_context_data(self, *args, **kwargs):
         context = super(GeographicalCoverageEdit, self).get_context_data(*args, **kwargs)
@@ -393,6 +412,7 @@ class SteepCategoryCreate(CreateView):
 
     model = models.SteepCategory
     template_name = 'steep_categories/steep_category_edit.html'
+    form_class = forms.SteepCategoryForm
 
     def get_context_data(self, *args, **kwargs):
         country = self.request.country
@@ -405,6 +425,7 @@ class SteepCategoryEdit(UpdateView):
 
     model = models.SteepCategory
     template_name = 'steep_categories/steep_category_edit.html'
+    form_class = forms.SteepCategoryForm
 
     def get_context_data(self, *args, **kwargs):
         context = super(SteepCategoryEdit, self).get_context_data(*args, **kwargs)
@@ -437,6 +458,7 @@ class TimelineCreate(CreateView):
 
     model = models.Timeline
     template_name = 'timelines/timeline_edit.html'
+    form_class = forms.TimelineCreateForm
 
     def get_context_data(self, *args, **kwargs):
         country = self.request.country
@@ -449,6 +471,7 @@ class TimelineEdit(UpdateView):
 
     model = models.Timeline
     template_name = 'timelines/timeline_edit.html'
+    form_class = forms.TimelineCreateForm
 
     def get_context_data(self, *args, **kwargs):
         context = super(TimelineEdit, self).get_context_data(*args, **kwargs)
