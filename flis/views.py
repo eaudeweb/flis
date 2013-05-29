@@ -17,14 +17,23 @@ from flis import models, auth, forms
 PER_PAGE = 25
 
 
-class Interlinks(ListView):
+class BaseQuerysetView(object):
+
+    def get_queryset(self):
+        return self.model.objects.filter(country=self.request.country)
+
+
+class Interlinks(BaseQuerysetView, ListView):
 
     model = models.Interlink
     template_name = 'interlinks/interlinks.html'
     paginate_by = PER_PAGE
 
+    def get_queryset(self):
+        return self.model.objects.filter(country=self.request.country)
 
-class Interlink(DetailView):
+
+class Interlink(BaseQuerysetView, DetailView):
 
     model = models.Interlink
     template_name = 'interlinks/interlink.html'
@@ -44,7 +53,7 @@ class InterlinkCreate(CreateView):
         return context
 
 
-class InterlinkEdit(UpdateView):
+class InterlinkEdit(BaseQuerysetView, UpdateView):
 
     model = models.Interlink
     template_name = 'interlinks/interlink_edit.html'
@@ -56,7 +65,7 @@ class InterlinkEdit(UpdateView):
         return context
 
 
-class InterlinkDelete(DeleteView):
+class InterlinkDelete(BaseQuerysetView, DeleteView):
 
     model = models.Interlink
 
@@ -65,14 +74,14 @@ class InterlinkDelete(DeleteView):
         return reverse('interlinks', kwargs={'country': country})
 
 
-class Sources(ListView):
+class Sources(BaseQuerysetView, ListView):
 
     model = models.Source
     template_name = 'sources/sources.html'
     paginate_by = PER_PAGE
 
 
-class Source(DetailView):
+class Source(BaseQuerysetView, DetailView):
 
     model = models.Source
     template_name = 'sources/source.html'
@@ -91,7 +100,7 @@ class SourceCreate(CreateView):
         return context
 
 
-class SourceEdit(UpdateView):
+class SourceEdit(BaseQuerysetView, UpdateView):
 
     template_name = 'sources/source_edit.html'
     model = models.Source
@@ -103,7 +112,7 @@ class SourceEdit(UpdateView):
         return context
 
 
-class SourceDelete(DeleteView):
+class SourceDelete(BaseQuerysetView, DeleteView):
 
     model = models.Source
 
@@ -112,14 +121,14 @@ class SourceDelete(DeleteView):
         return reverse('sources', kwargs={'country': country})
 
 
-class GMTs(ListView):
+class GMTs(BaseQuerysetView, ListView):
 
     model = models.GMT
     template_name = 'gmt/gmts.html'
     paginate_by = PER_PAGE
 
 
-class GMT(DetailView):
+class GMT(BaseQuerysetView, DetailView):
 
     model = models.GMT
     template_name = 'gmt/gmt.html'
@@ -138,7 +147,7 @@ class GMTCreate(CreateView):
         return context
 
 
-class GMTEdit(UpdateView):
+class GMTEdit(BaseQuerysetView, UpdateView):
 
     model = models.GMT
     template_name = 'gmt/gmt_edit.html'
@@ -150,7 +159,7 @@ class GMTEdit(UpdateView):
         return context
 
 
-class GMTDelete(DeleteView):
+class GMTDelete(BaseQuerysetView, DeleteView):
 
     model = models.GMT
 
@@ -159,13 +168,13 @@ class GMTDelete(DeleteView):
         return reverse('gmts', kwargs={'country': country})
 
 
-class Indicators(ListView):
+class Indicators(BaseQuerysetView, ListView):
 
     model = models.Indicator
     template_name = 'indicators/indicators.html'
 
 
-class Indicator(DetailView):
+class Indicator(BaseQuerysetView, DetailView):
 
     model = models.Indicator
     template_name = 'indicators/indicator.html'
@@ -184,7 +193,7 @@ class IndicatorCreate(CreateView):
         return context
 
 
-class IndicatorEdit(UpdateView):
+class IndicatorEdit(BaseQuerysetView, UpdateView):
 
     model = models.Indicator
     template_name = 'indicators/indicator_edit.html'
@@ -196,7 +205,7 @@ class IndicatorEdit(UpdateView):
         return context
 
 
-class IndicatorDelete(DeleteView):
+class IndicatorDelete(BaseQuerysetView, DeleteView):
 
     model = models.Indicator
 
@@ -205,14 +214,14 @@ class IndicatorDelete(DeleteView):
         return reverse('indicators', kwargs={'country': country})
 
 
-class Trends(ListView):
+class Trends(BaseQuerysetView, ListView):
 
     model = models.Trend
     template_name = 'trends/trends.html'
     paginate_by = PER_PAGE
 
 
-class Trend(DetailView):
+class Trend(BaseQuerysetView, DetailView):
 
     model = models.Trend
     template_name = 'trends/trend.html'
@@ -231,7 +240,7 @@ class TrendCreate(CreateView):
         return context
 
 
-class TrendEdit(UpdateView):
+class TrendEdit(BaseQuerysetView, UpdateView):
 
     model = models.Trend
     template_name = 'trends/trend_edit.html'
@@ -243,7 +252,7 @@ class TrendEdit(UpdateView):
         return context
 
 
-class TrendDelete(DeleteView):
+class TrendDelete(BaseQuerysetView, DeleteView):
 
     model = models.Trend
 
@@ -252,13 +261,13 @@ class TrendDelete(DeleteView):
         return reverse('trends', kwargs={'country': country})
 
 
-class ThematicCategories(ListView):
+class ThematicCategories(BaseQuerysetView, ListView):
 
     model = models.ThematicCategory
     template_name = 'thematic_categories/thematic_categories.html'
 
 
-class ThematicCategory(DetailView):
+class ThematicCategory(BaseQuerysetView, DetailView):
 
     model = models.ThematicCategory
     template_name = 'thematic_categories/thematic_category.html'
@@ -283,7 +292,7 @@ class ThematicCategoryCreate(CreateView):
         return context
 
 
-class ThematicCategoryEdit(UpdateView):
+class ThematicCategoryEdit(BaseQuerysetView, UpdateView):
 
     model = models.ThematicCategory
     template_name = 'thematic_categories/thematic_category_edit.html'
@@ -295,7 +304,7 @@ class ThematicCategoryEdit(UpdateView):
         return context
 
 
-class ThematicCategoryDelete(DeleteView):
+class ThematicCategoryDelete(BaseQuerysetView, DeleteView):
 
     model = models.ThematicCategory
 
@@ -304,13 +313,13 @@ class ThematicCategoryDelete(DeleteView):
         return reverse('thematic_categories', kwargs={'country': country})
 
 
-class GeographicalScales(ListView):
+class GeographicalScales(BaseQuerysetView, ListView):
 
     model = models.GeographicalScale
     template_name = 'geographical_scales/geographical_scales.html'
 
 
-class GeographicalScale(DetailView):
+class GeographicalScale(BaseQuerysetView, DetailView):
 
     model = models.GeographicalScale
     template_name = 'geographical_scales/geographical_scale.html'
@@ -329,7 +338,7 @@ class GeographicalScaleCreate(CreateView):
         return context
 
 
-class GeographicalScaleEdit(UpdateView):
+class GeographicalScaleEdit(BaseQuerysetView, UpdateView):
 
     model = models.GeographicalScale
     template_name = 'geographical_scales/geographical_scale_edit.html'
@@ -341,7 +350,7 @@ class GeographicalScaleEdit(UpdateView):
         return context
 
 
-class GeographicalScaleDelete(DeleteView):
+class GeographicalScaleDelete(BaseQuerysetView, DeleteView):
 
     model = models.GeographicalScale
 
@@ -350,13 +359,13 @@ class GeographicalScaleDelete(DeleteView):
         return reverse('geographical_scales', kwargs={'country': country})
 
 
-class GeographicalCoverages(ListView):
+class GeographicalCoverages(BaseQuerysetView, ListView):
 
     model = models.GeographicalCoverage
     template_name = 'geographical_coverages/geographical_coverages.html'
 
 
-class GeographicalCoverage(DetailView):
+class GeographicalCoverage(BaseQuerysetView, DetailView):
 
     model = models.GeographicalCoverage
     template_name = 'geographical_coverages/geographical_coverage.html'
@@ -375,7 +384,7 @@ class GeographicalCoverageCreate(CreateView):
         return context
 
 
-class GeographicalCoverageEdit(UpdateView):
+class GeographicalCoverageEdit(BaseQuerysetView, UpdateView):
 
     model = models.GeographicalCoverage
     template_name = 'geographical_coverages/geographical_coverage_edit.html'
@@ -387,7 +396,7 @@ class GeographicalCoverageEdit(UpdateView):
         return context
 
 
-class GeographicalCoverageDelete(DeleteView):
+class GeographicalCoverageDelete(BaseQuerysetView, DeleteView):
 
     model = models.GeographicalCoverage
 
@@ -396,13 +405,13 @@ class GeographicalCoverageDelete(DeleteView):
         return reverse('geographical_coverages', kwargs={'country': country})
 
 
-class SteepCategories(ListView):
+class SteepCategories(BaseQuerysetView, ListView):
 
     model = models.SteepCategory
     template_name = 'steep_categories/steep_categories.html'
 
 
-class SteepCategory(DetailView):
+class SteepCategory(BaseQuerysetView, DetailView):
 
     model = models.SteepCategory
     template_name = 'steep_categories/steep_category.html'
@@ -421,7 +430,7 @@ class SteepCategoryCreate(CreateView):
         return context
 
 
-class SteepCategoryEdit(UpdateView):
+class SteepCategoryEdit(BaseQuerysetView, UpdateView):
 
     model = models.SteepCategory
     template_name = 'steep_categories/steep_category_edit.html'
@@ -433,7 +442,7 @@ class SteepCategoryEdit(UpdateView):
         return context
 
 
-class SteepCategoryDelete(DeleteView):
+class SteepCategoryDelete(BaseQuerysetView, DeleteView):
 
     model = models.SteepCategory
 
@@ -442,13 +451,13 @@ class SteepCategoryDelete(DeleteView):
         return reverse('steep_categories', kwargs={'country': country})
 
 
-class Timelines(ListView):
+class Timelines(BaseQuerysetView, ListView):
 
     model = models.Timeline
     template_name = 'timelines/timelines.html'
 
 
-class Timeline(DetailView):
+class Timeline(BaseQuerysetView, DetailView):
 
     model = models.Timeline
     template_name = 'timelines/timeline.html'
@@ -467,7 +476,7 @@ class TimelineCreate(CreateView):
         return context
 
 
-class TimelineEdit(UpdateView):
+class TimelineEdit(BaseQuerysetView, UpdateView):
 
     model = models.Timeline
     template_name = 'timelines/timeline_edit.html'
@@ -479,7 +488,7 @@ class TimelineEdit(UpdateView):
         return context
 
 
-class TimelineDelete(DeleteView):
+class TimelineDelete(BaseQuerysetView, DeleteView):
 
     model = models.Timeline
     def get_success_url(self):
