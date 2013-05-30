@@ -109,5 +109,14 @@
         "fields": {
             "name": "GMT EU Ressource Efficiency"
         }
+    },
+
+
+    {
+        "pk": "eea",
+        "model": "flis.country",
+        "fields": {
+            "name": "EEA"
+        }
     }
 ]
