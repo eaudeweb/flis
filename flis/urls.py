@@ -55,6 +55,7 @@ flis_patterns = patterns('',
         auth.edit_is_allowed(views.IndicatorDelete.as_view()),
         name='indicator_delete'),
 
+#GMTs
     url(r'^gmts$', views.GMTs.as_view(), name='gmts'),
 
     url(r'^gmts/new$',
@@ -71,6 +72,109 @@ flis_patterns = patterns('',
         auth.edit_is_allowed(views.GMTDelete.as_view()),
         name='gmt_delete'),
 
+#Models
+    url(r'^flismodels$', views.FlisModels.as_view(), name='flismodels'),
+
+    url(r'^flismodels/new$',
+        auth.edit_is_allowed(views.FlisModelCreate.as_view()),
+        name='flismodel_new'),
+
+    url(r'^flismodels/(?P<pk>\d+)/edit$',
+        auth.edit_is_allowed(views.FlisModelEdit.as_view()),
+        name='flismodel_edit'),
+
+    url(r'^flismodels/(?P<pk>\d+)/$', views.FlisModel.as_view(), name='flismodel_view'),
+
+    url(r'^flismodels/(?P<pk>\d+)/delete$',
+        auth.edit_is_allowed(views.FlisModelDelete.as_view()),
+        name='flismodel_delete'),
+
+#Horizon scanning
+    url(r'^horizonscannings$', views.HorizonScannings.as_view(), name='horizonscannings'),
+
+    url(r'^horizonscannings/new$',
+        auth.edit_is_allowed(views.HorizonScanningCreate.as_view()),
+        name='horizonscanning_new'),
+
+    url(r'^horizonscannings/(?P<pk>\d+)/edit$',
+        auth.edit_is_allowed(views.HorizonScanningEdit.as_view()),
+        name='horizonscanning_edit'),
+
+    url(r'^horizonscannings/(?P<pk>\d+)/$', views.HorizonScanning.as_view(), name='horizonscanning_view'),
+
+    url(r'^horizonscannings/(?P<pk>\d+)/delete$',
+        auth.edit_is_allowed(views.HorizonScanningDelete.as_view()),
+        name='horizonscanning_delete'),
+
+#Methods and tools
+    url(r'^methodstools$', views.MethodsTools.as_view(), name='methodstools'),
+
+    url(r'^methodstools/new$',
+        auth.edit_is_allowed(views.MethodToolCreate.as_view()),
+        name='methodtool_new'),
+
+    url(r'^methodstools/(?P<pk>\d+)/edit$',
+        auth.edit_is_allowed(views.MethodToolEdit.as_view()),
+        name='methodtool_edit'),
+
+    url(r'^methodstools/(?P<pk>\d+)/$', views.MethodTool.as_view(), name='methodtool_view'),
+
+    url(r'^methodstools/(?P<pk>\d+)/delete$',
+        auth.edit_is_allowed(views.MethodToolDelete.as_view()),
+        name='methodtool_delete'),
+
+#Uncertainties
+    url(r'^uncertainties$', views.Uncertainties.as_view(), name='uncertainties'),
+
+    url(r'^uncertainties/new$',
+        auth.edit_is_allowed(views.UncertaintyCreate.as_view()),
+        name='uncertainty_new'),
+
+    url(r'^uncertainties/(?P<pk>\d+)/edit$',
+        auth.edit_is_allowed(views.UncertaintyEdit.as_view()),
+        name='uncertainty_edit'),
+
+    url(r'^uncertainties/(?P<pk>\d+)/$', views.Uncertainty.as_view(), name='uncertainty_view'),
+
+    url(r'^uncertainties/(?P<pk>\d+)/delete$',
+        auth.edit_is_allowed(views.UncertaintyDelete.as_view()),
+        name='uncertainty_delete'),
+
+#Wild cards
+    url(r'^wildcards$', views.WildCards.as_view(), name='wildcards'),
+
+    url(r'^wildcards/new$',
+        auth.edit_is_allowed(views.WildCardCreate.as_view()),
+        name='wildcard_new'),
+
+    url(r'^wildcards/(?P<pk>\d+)/edit$',
+        auth.edit_is_allowed(views.WildCardEdit.as_view()),
+        name='wildcard_edit'),
+
+    url(r'^wildcards/(?P<pk>\d+)/$', views.WildCard.as_view(), name='wildcard_view'),
+
+    url(r'^wildcards/(?P<pk>\d+)/delete$',
+        auth.edit_is_allowed(views.WildCardDelete.as_view()),
+        name='wildcard_delete'),
+
+#Early warnings
+    url(r'^earlywarnings$', views.EarlyWarnings.as_view(), name='earlywarnings'),
+
+    url(r'^earlywarnings/new$',
+        auth.edit_is_allowed(views.EarlyWarningCreate.as_view()),
+        name='earlywarning_new'),
+
+    url(r'^earlywarnings/(?P<pk>\d+)/edit$',
+        auth.edit_is_allowed(views.EarlyWarningEdit.as_view()),
+        name='earlywarning_edit'),
+
+    url(r'^earlywarnings/(?P<pk>\d+)/$', views.EarlyWarning.as_view(), name='earlywarning_view'),
+
+    url(r'^earlywarnings/(?P<pk>\d+)/delete$',
+        auth.edit_is_allowed(views.EarlyWarningDelete.as_view()),
+        name='earlywarning_delete'),
+
+#Trends
     url(r'^trends$', views.Trends.as_view(), name='trends'),
 
     url(r'^trends/new$',

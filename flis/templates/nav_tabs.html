@@ -18,6 +18,30 @@
     <a href="{% url gmts country=country %}">GMTs</a>
   </li>
 
+  <li class="{% active request 'flismodels' %}">
+    <a href="{% url flismodels country=country %}">Models</a>
+  </li>
+
+  <li class="{% active request 'horizonscannings' %}">
+    <a href="{% url horizonscannings country=country %}">Horizon scanning</a>
+  </li>
+
+  <li class="{% active request 'methodstools' %}">
+    <a href="{% url methodstools country=country %}">Methods and tools</a>
+  </li>
+
+  <li class="{% active request 'uncertainties' %}">
+    <a href="{% url uncertainties country=country %}">Uncertainties</a>
+  </li>
+
+  <li class="{% active request 'wildcards' %}">
+    <a href="{% url wildcards country=country %}">Wild cards</a>
+  </li>
+
+  <li class="{% active request 'earlywarnings' %}">
+    <a href="{% url earlywarnings country=country %}">Early warnings</a>
+  </li>
+
   <li class="{% active request 'sources' %}">
     <a href="{% url sources country=country %}">Sources</a>
   </li>

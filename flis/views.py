@@ -23,6 +23,7 @@ class BaseQuerysetView(object):
         return self.model.objects.filter(country=self.request.country)
 
 
+#Interlink
 class Interlinks(BaseQuerysetView, ListView):
 
     model = models.Interlink
@@ -74,6 +75,7 @@ class InterlinkDelete(BaseQuerysetView, DeleteView):
         return reverse('interlinks', kwargs={'country': country})
 
 
+#Sources
 class Sources(BaseQuerysetView, ListView):
 
     model = models.Source
@@ -121,6 +123,7 @@ class SourceDelete(BaseQuerysetView, DeleteView):
         return reverse('sources', kwargs={'country': country})
 
 
+#GMT
 class GMTs(BaseQuerysetView, ListView):
 
     model = models.GMT
@@ -167,7 +170,295 @@ class GMTDelete(BaseQuerysetView, DeleteView):
         country = self.request.country
         return reverse('gmts', kwargs={'country': country})
 
+#Models
+class FlisModels(BaseQuerysetView, ListView):
 
+    model = models.FlisModel
+    template_name = 'flismodel/flismodels.html'
+    paginate_by = PER_PAGE
+
+
+class FlisModel(BaseQuerysetView, DetailView):
+
+    model = models.FlisModel
+    template_name = 'flismodel/flismodel.html'
+
+
+class FlisModelCreate(CreateView):
+
+    model = models.FlisModel
+    template_name = 'flismodel/flismodel_edit.html'
+    form_class = forms.FlisModelForm
+
+    def get_context_data(self, *args, **kwargs):
+        country = self.request.country
+        context = super(FlisModelCreate, self).get_context_data(*args, **kwargs)
+        context['cancel_url'] = reverse('flismodels', kwargs={'country': country})
+        return context
+
+
+class FlisModelEdit(BaseQuerysetView, UpdateView):
+
+    model = models.FlisModel
+    template_name = 'flismodel/flismodel_edit.html'
+    form_class = forms.FlisModelForm
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(FlisModelEdit, self).get_context_data(*args, **kwargs)
+        context['cancel_url'] = context['object'].get_absolute_url()
+        return context
+
+
+class FlisModelDelete(BaseQuerysetView, DeleteView):
+
+    model = models.FlisModel
+
+    def get_success_url(self):
+        country = self.request.country
+        return reverse('flismodels', kwargs={'country': country})
+
+
+#Horizon Scanning
+class HorizonScannings(BaseQuerysetView, ListView):
+
+    model = models.HorizonScanning
+    template_name = 'horizonscanning/horizonscannings.html'
+    paginate_by = PER_PAGE
+
+
+class HorizonScanning(BaseQuerysetView, DetailView):
+
+    model = models.HorizonScanning
+    template_name = 'horizonscanning/horizonscanning.html'
+
+
+class HorizonScanningCreate(CreateView):
+
+    model = models.HorizonScanning
+    template_name = 'horizonscanning/horizonscanning_edit.html'
+    form_class = forms.HorizonScanningForm
+
+    def get_context_data(self, *args, **kwargs):
+        country = self.request.country
+        context = super(HorizonScanningCreate, self).get_context_data(*args, **kwargs)
+        context['cancel_url'] = reverse('horizonscannings', kwargs={'country': country})
+        return context
+
+
+class HorizonScanningEdit(BaseQuerysetView, UpdateView):
+
+    model = models.HorizonScanning
+    template_name = 'horizonscanning/horizonscanning_edit.html'
+    form_class = forms.HorizonScanningForm
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(HorizonScanningEdit, self).get_context_data(*args, **kwargs)
+        context['cancel_url'] = context['object'].get_absolute_url()
+        return context
+
+
+class HorizonScanningDelete(BaseQuerysetView, DeleteView):
+
+    model = models.HorizonScanning
+
+    def get_success_url(self):
+        country = self.request.country
+        return reverse('horizonscannings', kwargs={'country': country})
+
+
+#Methods and Tools
+class MethodsTools(BaseQuerysetView, ListView):
+
+    model = models.MethodTool
+    template_name = 'methodtool/methodstools.html'
+    paginate_by = PER_PAGE
+
+
+class MethodTool(BaseQuerysetView, DetailView):
+
+    model = models.MethodTool
+    template_name = 'methodtool/methodtool.html'
+
+
+class MethodToolCreate(CreateView):
+
+    model = models.MethodTool
+    template_name = 'methodtool/methodtool_edit.html'
+    form_class = forms.MethodToolForm
+
+    def get_context_data(self, *args, **kwargs):
+        country = self.request.country
+        context = super(MethodToolCreate, self).get_context_data(*args, **kwargs)
+        context['cancel_url'] = reverse('methodstools', kwargs={'country': country})
+        return context
+
+
+class MethodToolEdit(BaseQuerysetView, UpdateView):
+
+    model = models.MethodTool
+    template_name = 'methodtool/methodtool_edit.html'
+    form_class = forms.MethodToolForm
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(MethodToolEdit, self).get_context_data(*args, **kwargs)
+        context['cancel_url'] = context['object'].get_absolute_url()
+        return context
+
+
+class MethodToolDelete(BaseQuerysetView, DeleteView):
+
+    model = models.MethodTool
+
+    def get_success_url(self):
+        country = self.request.country
+        return reverse('methodstools', kwargs={'country': country})
+
+
+#Uncertainties
+class Uncertainties(BaseQuerysetView, ListView):
+
+    model = models.Uncertainty
+    template_name = 'uncertainty/uncertainties.html'
+    paginate_by = PER_PAGE
+
+
+class Uncertainty(BaseQuerysetView, DetailView):
+
+    model = models.Uncertainty
+    template_name = 'uncertainty/uncertainty.html'
+
+
+class UncertaintyCreate(CreateView):
+
+    model = models.Uncertainty
+    template_name = 'uncertainty/uncertainty_edit.html'
+    form_class = forms.UncertaintyForm
+
+    def get_context_data(self, *args, **kwargs):
+        country = self.request.country
+        context = super(UncertaintyCreate, self).get_context_data(*args, **kwargs)
+        context['cancel_url'] = reverse('uncertainties', kwargs={'country': country})
+        return context
+
+
+class UncertaintyEdit(BaseQuerysetView, UpdateView):
+
+    model = models.Uncertainty
+    template_name = 'uncertainty/uncertainty_edit.html'
+    form_class = forms.UncertaintyForm
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(UncertaintyEdit, self).get_context_data(*args, **kwargs)
+        context['cancel_url'] = context['object'].get_absolute_url()
+        return context
+
+
+class UncertaintyDelete(BaseQuerysetView, DeleteView):
+
+    model = models.Uncertainty
+
+    def get_success_url(self):
+        country = self.request.country
+        return reverse('uncertainties', kwargs={'country': country})
+
+
+#Wild cards
+class WildCards(BaseQuerysetView, ListView):
+
+    model = models.WildCard
+    template_name = 'wildcard/wildcards.html'
+    paginate_by = PER_PAGE
+
+
+class WildCard(BaseQuerysetView, DetailView):
+
+    model = models.WildCard
+    template_name = 'wildcard/wildcard.html'
+
+
+class WildCardCreate(CreateView):
+
+    model = models.WildCard
+    template_name = 'wildcard/wildcard_edit.html'
+    form_class = forms.WildCardForm
+
+    def get_context_data(self, *args, **kwargs):
+        country = self.request.country
+        context = super(WildCardCreate, self).get_context_data(*args, **kwargs)
+        context['cancel_url'] = reverse('wildcards', kwargs={'country': country})
+        return context
+
+
+class WildCardEdit(BaseQuerysetView, UpdateView):
+
+    model = models.WildCard
+    template_name = 'wildcard/wildcard_edit.html'
+    form_class = forms.WildCardForm
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(WildCardEdit, self).get_context_data(*args, **kwargs)
+        context['cancel_url'] = context['object'].get_absolute_url()
+        return context
+
+
+class WildCardDelete(BaseQuerysetView, DeleteView):
+
+    model = models.WildCard
+
+    def get_success_url(self):
+        country = self.request.country
+        return reverse('wildcards', kwargs={'country': country})
+
+
+#Early warnings
+class EarlyWarnings(BaseQuerysetView, ListView):
+
+    model = models.EarlyWarning
+    template_name = 'earlywarning/earlywarnings.html'
+    paginate_by = PER_PAGE
+
+
+class EarlyWarning(BaseQuerysetView, DetailView):
+
+    model = models.EarlyWarning
+    template_name = 'earlywarning/earlywarning.html'
+
+
+class EarlyWarningCreate(CreateView):
+
+    model = models.EarlyWarning
+    template_name = 'earlywarning/earlywarning_edit.html'
+    form_class = forms.EarlyWarningForm
+
+    def get_context_data(self, *args, **kwargs):
+        country = self.request.country
+        context = super(EarlyWarningCreate, self).get_context_data(*args, **kwargs)
+        context['cancel_url'] = reverse('earlywarnings', kwargs={'country': country})
+        return context
+
+
+class EarlyWarningEdit(BaseQuerysetView, UpdateView):
+
+    model = models.EarlyWarning
+    template_name = 'earlywarning/earlywarning_edit.html'
+    form_class = forms.EarlyWarningForm
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(EarlyWarningEdit, self).get_context_data(*args, **kwargs)
+        context['cancel_url'] = context['object'].get_absolute_url()
+        return context
+
+
+class EarlyWarningDelete(BaseQuerysetView, DeleteView):
+
+    model = models.EarlyWarning
+
+    def get_success_url(self):
+        country = self.request.country
+        return reverse('earlywarnings', kwargs={'country': country})
+
+
+#Indicators
 class Indicators(BaseQuerysetView, ListView):
 
     model = models.Indicator
@@ -214,6 +505,7 @@ class IndicatorDelete(BaseQuerysetView, DeleteView):
         return reverse('indicators', kwargs={'country': country})
 
 
+#Trends
 class Trends(BaseQuerysetView, ListView):
 
     model = models.Trend
@@ -261,6 +553,7 @@ class TrendDelete(BaseQuerysetView, DeleteView):
         return reverse('trends', kwargs={'country': country})
 
 
+#Thematic category
 class ThematicCategories(BaseQuerysetView, ListView):
 
     model = models.ThematicCategory
@@ -313,6 +606,7 @@ class ThematicCategoryDelete(BaseQuerysetView, DeleteView):
         return reverse('thematic_categories', kwargs={'country': country})
 
 
+#Geographical Scale
 class GeographicalScales(BaseQuerysetView, ListView):
 
     model = models.GeographicalScale
@@ -359,6 +653,7 @@ class GeographicalScaleDelete(BaseQuerysetView, DeleteView):
         return reverse('geographical_scales', kwargs={'country': country})
 
 
+#Geographical Coverage
 class GeographicalCoverages(BaseQuerysetView, ListView):
 
     model = models.GeographicalCoverage
@@ -405,6 +700,7 @@ class GeographicalCoverageDelete(BaseQuerysetView, DeleteView):
         return reverse('geographical_coverages', kwargs={'country': country})
 
 
+#Steep Category
 class SteepCategories(BaseQuerysetView, ListView):
 
     model = models.SteepCategory
@@ -451,6 +747,7 @@ class SteepCategoryDelete(BaseQuerysetView, DeleteView):
         return reverse('steep_categories', kwargs={'country': country})
 
 
+#Timeline
 class Timelines(BaseQuerysetView, ListView):
 
     model = models.Timeline

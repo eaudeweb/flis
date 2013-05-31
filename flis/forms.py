@@ -32,6 +32,42 @@ class GMTForm(CleanCountry, forms.ModelForm):
         model = models.GMT
 
 
+class FlisModelForm(CleanCountry, forms.ModelForm):
+
+    class Meta:
+        model = models.FlisModel
+
+
+class HorizonScanningForm(CleanCountry, forms.ModelForm):
+
+    class Meta:
+        model = models.HorizonScanning
+
+
+class MethodToolForm(CleanCountry, forms.ModelForm):
+
+    class Meta:
+        model = models.MethodTool
+
+
+class UncertaintyForm(CleanCountry, forms.ModelForm):
+
+    class Meta:
+        model = models.Uncertainty
+
+
+class WildCardForm(CleanCountry, forms.ModelForm):
+
+    class Meta:
+        model = models.WildCard
+
+
+class EarlyWarningForm(CleanCountry, forms.ModelForm):
+
+    class Meta:
+        model = models.EarlyWarning
+
+
 class IndicatorForm(CleanCountry, forms.ModelForm):
 
     class Meta:

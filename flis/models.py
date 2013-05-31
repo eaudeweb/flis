@@ -267,6 +267,198 @@ class GMT(models.Model, BaseModel):
       })
 
 
+class FlisModel(models.Model, BaseModel):
+
+    country = models.ForeignKey(Country)
+    code = models.CharField(max_length=256, verbose_name='Code')
+    steep_category = models.ForeignKey(SteepCategory,
+                                       related_name='flismodels',
+                                       verbose_name='Steep Category',
+                                       null=True, blank=True,
+                                       on_delete=models.PROTECT)
+    description = models.CharField(max_length=512, verbose_name='Description')
+    source = models.ForeignKey(Source, related_name='flismodels',
+                               verbose_name='Source',
+                               on_delete=models.PROTECT)
+    # url = models.URLField(max_length=512, verbose_name='URL')
+    ownership = models.CharField(max_length=512, verbose_name='Ownership')
+    summary = models.TextField(null=True, blank=True, default='',
+                               verbose_name='Summary')
+    file_id = models.FileField(upload_to='files', max_length=256,
+                               null=True, blank=True, default='',
+                               verbose_name='File')
+
+    def __unicode__(self):
+        return self.code
+
+    def get_absolute_url(self):
+
+      return reverse('flismodel_view', kwargs={
+        'pk': self.pk,
+        'country': self.country
+      })
+
+
+class HorizonScanning(models.Model, BaseModel):
+
+    country = models.ForeignKey(Country)
+    code = models.CharField(max_length=256, verbose_name='Code')
+    steep_category = models.ForeignKey(SteepCategory,
+                                       related_name='horizonscannings',
+                                       verbose_name='Steep Category',
+                                       null=True, blank=True,
+                                       on_delete=models.PROTECT)
+    description = models.CharField(max_length=512, verbose_name='Description')
+    source = models.ForeignKey(Source, related_name='horizonscannings',
+                               verbose_name='Source',
+                               on_delete=models.PROTECT)
+    # url = models.URLField(max_length=512, verbose_name='URL')
+    ownership = models.CharField(max_length=512, verbose_name='Ownership')
+    summary = models.TextField(null=True, blank=True, default='',
+                               verbose_name='Summary')
+    file_id = models.FileField(upload_to='files', max_length=256,
+                               null=True, blank=True, default='',
+                               verbose_name='File')
+
+    def __unicode__(self):
+        return self.code
+
+    def get_absolute_url(self):
+
+      return reverse('horizonscanning_view', kwargs={
+        'pk': self.pk,
+        'country': self.country
+      })
+
+
+class MethodTool(models.Model, BaseModel):
+
+    country = models.ForeignKey(Country)
+    code = models.CharField(max_length=256, verbose_name='Code')
+    steep_category = models.ForeignKey(SteepCategory,
+                                       related_name='methodstools',
+                                       verbose_name='Steep Category',
+                                       null=True, blank=True,
+                                       on_delete=models.PROTECT)
+    description = models.CharField(max_length=512, verbose_name='Description')
+    source = models.ForeignKey(Source, related_name='methodstools',
+                               verbose_name='Source',
+                               on_delete=models.PROTECT)
+    # url = models.URLField(max_length=512, verbose_name='URL')
+    ownership = models.CharField(max_length=512, verbose_name='Ownership')
+    summary = models.TextField(null=True, blank=True, default='',
+                               verbose_name='Summary')
+    file_id = models.FileField(upload_to='files', max_length=256,
+                               null=True, blank=True, default='',
+                               verbose_name='File')
+
+    def __unicode__(self):
+        return self.code
+
+    def get_absolute_url(self):
+
+      return reverse('methodtool_view', kwargs={
+        'pk': self.pk,
+        'country': self.country
+      })
+
+
+class Uncertainty(models.Model, BaseModel):
+
+    country = models.ForeignKey(Country)
+    code = models.CharField(max_length=256, verbose_name='Code')
+    steep_category = models.ForeignKey(SteepCategory,
+                                       related_name='uncertainties',
+                                       verbose_name='Steep Category',
+                                       null=True, blank=True,
+                                       on_delete=models.PROTECT)
+    description = models.CharField(max_length=512, verbose_name='Description')
+    source = models.ForeignKey(Source, related_name='uncertainties',
+                               verbose_name='Source',
+                               on_delete=models.PROTECT)
+    # url = models.URLField(max_length=512, verbose_name='URL')
+    ownership = models.CharField(max_length=512, verbose_name='Ownership')
+    summary = models.TextField(null=True, blank=True, default='',
+                               verbose_name='Summary')
+    file_id = models.FileField(upload_to='files', max_length=256,
+                               null=True, blank=True, default='',
+                               verbose_name='File')
+
+    def __unicode__(self):
+        return self.code
+
+    def get_absolute_url(self):
+
+      return reverse('uncertainty_view', kwargs={
+        'pk': self.pk,
+        'country': self.country
+      })
+
+
+class WildCard(models.Model, BaseModel):
+
+    country = models.ForeignKey(Country)
+    code = models.CharField(max_length=256, verbose_name='Code')
+    steep_category = models.ForeignKey(SteepCategory,
+                                       related_name='wildcards',
+                                       verbose_name='Steep Category',
+                                       null=True, blank=True,
+                                       on_delete=models.PROTECT)
+    description = models.CharField(max_length=512, verbose_name='Description')
+    source = models.ForeignKey(Source, related_name='wildcards',
+                               verbose_name='Source',
+                               on_delete=models.PROTECT)
+    # url = models.URLField(max_length=512, verbose_name='URL')
+    ownership = models.CharField(max_length=512, verbose_name='Ownership')
+    summary = models.TextField(null=True, blank=True, default='',
+                               verbose_name='Summary')
+    file_id = models.FileField(upload_to='files', max_length=256,
+                               null=True, blank=True, default='',
+                               verbose_name='File')
+
+    def __unicode__(self):
+        return self.code
+
+    def get_absolute_url(self):
+
+      return reverse('wildcard_view', kwargs={
+        'pk': self.pk,
+        'country': self.country
+      })
+
+
+class EarlyWarning(models.Model, BaseModel):
+
+    country = models.ForeignKey(Country)
+    code = models.CharField(max_length=256, verbose_name='Code')
+    steep_category = models.ForeignKey(SteepCategory,
+                                       related_name='earlywarnings',
+                                       verbose_name='Steep Category',
+                                       null=True, blank=True,
+                                       on_delete=models.PROTECT)
+    description = models.CharField(max_length=512, verbose_name='Description')
+    source = models.ForeignKey(Source, related_name='earlywarnings',
+                               verbose_name='Source',
+                               on_delete=models.PROTECT)
+    # url = models.URLField(max_length=512, verbose_name='URL')
+    ownership = models.CharField(max_length=512, verbose_name='Ownership')
+    summary = models.TextField(null=True, blank=True, default='',
+                               verbose_name='Summary')
+    file_id = models.FileField(upload_to='files', max_length=256,
+                               null=True, blank=True, default='',
+                               verbose_name='File')
+
+    def __unicode__(self):
+        return self.code
+
+    def get_absolute_url(self):
+
+      return reverse('earlywarning_view', kwargs={
+        'pk': self.pk,
+        'country': self.country
+      })
+
+
 class Interlink(models.Model, BaseModel):
 
     country = models.ForeignKey(Country)
