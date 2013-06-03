@@ -159,6 +159,22 @@ class GeographicalCoverage(models.Model, BaseModel):
         })
 
 
+class Scenario(models.Model, BaseModel):
+
+    country = models.ForeignKey(Country)
+    code = models.CharField(max_length=256, verbose_name='Code')
+    description = models.CharField(max_length=512, verbose_name='Description')
+
+    def __unicode__(self):
+        return '%s (%s)' % (self.code, self.description)
+
+    def get_absolute_url(self):
+        return reverse('scenario_view', kwargs={
+          'pk': self.pk,
+          'country': self.country,
+        })
+
+
 class SteepCategory(models.Model, BaseModel):
 
     country = models.ForeignKey(Country)

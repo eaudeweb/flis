@@ -3,24 +3,24 @@
 
 {% block content %}
 
-<h3>Geographical Scales</h3>
+<h3>Scenarios</h3>
 
 <div class="btn-toolbar">
   <div class="btn-group">
-    <a href="{% url geographical_scale_new country=country %}"
-       class="btn btn-primary">Add geographical scale</a>
+    <a href="{% url scenario_new country=country %}"
+       class="btn btn-primary">Add scenario</a>
   </div>
 </div>
 
 {% if not object_list %}
-  <p><br />No geographical scales defined yet.<br /></p>
+  <p><br />No scenarios defined yet.<br /></p>
 {% endif %}
 
 {% if object_list %}
 <table class="table table-bordered sources" style="width: 400px;">
   <thead>
     <tr>
-      <th>Geographical scale name</th>
+      <th>Scenario name</th>
     </tr>
   </thead>
 
@@ -28,7 +28,7 @@
     {% for object in object_list %}
     <tr>
       <td>
-        <a href="{% url geographical_scale_view pk=object.id country=country %}">{{ object.code }} ({{ object.description }})</a>
+        <a href="{% url scenario_view pk=object.id country=country %}">{{ object.code }} ({{ object.description }})</a>
       </td>
     </tr>
     {% endfor %}

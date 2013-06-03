@@ -700,6 +700,53 @@ class GeographicalCoverageDelete(BaseQuerysetView, DeleteView):
         return reverse('geographical_coverages', kwargs={'country': country})
 
 
+#Scenarios
+class Scenarios(BaseQuerysetView, ListView):
+
+    model = models.Scenario
+    template_name = 'scenarios/scenarios.html'
+
+
+class Scenario(BaseQuerysetView, DetailView):
+
+    model = models.Scenario
+    template_name = 'scenarios/scenario.html'
+
+
+class ScenarioCreate(CreateView):
+
+    model = models.Scenario
+    template_name = 'scenarios/scenario_edit.html'
+    form_class = forms.ScenarioForm
+
+    def get_context_data(self, *args, **kwargs):
+        country = self.request.country
+        context = super(ScenarioCreate, self).get_context_data(*args, **kwargs)
+        context['cancel_url'] = reverse('scenarios', kwargs={'country': country})
+        return context
+
+
+class ScenarioEdit(BaseQuerysetView, UpdateView):
+
+    model = models.Scenario
+    template_name = 'scenarios/scenario_edit.html'
+    form_class = forms.ScenarioForm
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ScenarioEdit, self).get_context_data(*args, **kwargs)
+        context['cancel_url'] = context['object'].get_absolute_url()
+        return context
+
+
+class ScenarioDelete(BaseQuerysetView, DeleteView):
+
+    model = models.Scenario
+
+    def get_success_url(self):
+        country = self.request.country
+        return reverse('scenarios', kwargs={'country': country})
+
+
 #Steep Category
 class SteepCategories(BaseQuerysetView, ListView):
 

@@ -223,6 +223,25 @@ flis_patterns = patterns('',
         auth.edit_is_allowed(views.GeographicalScaleDelete.as_view()),
         name='geographical_scale_delete'),
 
+#scenarios
+    url(r'^settings/scenarios$', views.Scenarios.as_view(),
+        name='scenarios'),
+
+    url(r'^settings/scenarios/new$',
+        auth.edit_is_allowed(views.ScenarioCreate.as_view()),
+        name='scenario_new'),
+
+    url(r'^settings/scenarios/(?P<pk>\d+)/edit$',
+        auth.edit_is_allowed(views.ScenarioEdit.as_view()),
+        name='scenario_edit'),
+
+    url(r'^settings/scenarios/(?P<pk>\d+)/$', views.Scenario.as_view(), name='scenario_view'),
+
+    url(r'^settings/scenarios/(?P<pk>\d+)/delete$',
+        auth.edit_is_allowed(views.ScenarioDelete.as_view()),
+        name='scenario_delete'),
+
+#geographical coverage
     url(r'^settings/geographical_coverages$', views.GeographicalCoverages.as_view(), name='geographical_coverages'),
 
     url(r'^settings/geographical_coverages/new$',
