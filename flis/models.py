@@ -60,6 +60,10 @@ class Country(models.Model):
   iso = models.CharField(max_length=128, primary_key=True)
   name = models.CharField(max_length=256)
 
+  class Meta(object):
+
+    verbose_name_plural = 'Countries'
+
   def __unicode__(self):
     return self.iso
 

@@ -2,8 +2,8 @@ from django.conf.urls import patterns, include, url
 from flis import views, auth
 
 # Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from django.contrib import admin
+admin.autodiscover()
 
 flis_patterns = patterns('',
 
@@ -293,6 +293,9 @@ flis_patterns = patterns('',
 )
 
 urlpatterns = patterns('',
+
+    url(r'^management/', include(admin.site.urls)),
+
     url(r'^(?P<country>\w+)/', include(flis_patterns)),
 
 )
