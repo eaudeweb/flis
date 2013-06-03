@@ -8,20 +8,14 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Scenario'
-        db.create_table('flis_scenario', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('country', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['flis.Country'])),
-            ('code', self.gf('django.db.models.fields.CharField')(max_length=256)),
-            ('description', self.gf('django.db.models.fields.CharField')(max_length=512)),
-        ))
-        db.send_create_signal('flis', ['Scenario'])
 
+        # Changing field 'GMT.url'
+        db.alter_column('flis_gmt', 'url', self.gf('django.db.models.fields.URLField')(max_length=512, null=True))
 
     def backwards(self, orm):
-        # Deleting model 'Scenario'
-        db.delete_table('flis_scenario')
 
+        # Changing field 'GMT.url'
+        db.alter_column('flis_gmt', 'url', self.gf('django.db.models.fields.URLField')(default='', max_length=512))
 
     models = {
         'flis.country': {
@@ -78,7 +72,7 @@ class Migration(SchemaMigration):
             'source': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'gmts'", 'on_delete': 'models.PROTECT', 'to': "orm['flis.Source']"}),
             'steep_category': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'gmts'", 'null': 'True', 'on_delete': 'models.PROTECT', 'to': "orm['flis.SteepCategory']"}),
             'summary': ('django.db.models.fields.TextField', [], {'default': "''", 'null': 'True', 'blank': 'True'}),
-            'url': ('django.db.models.fields.URLField', [], {'max_length': '512'}),
+            'url': ('django.db.models.fields.URLField', [], {'max_length': '512', 'null': 'True', 'blank': 'True'})
         },
         'flis.horizonscanning': {
             'Meta': {'object_name': 'HorizonScanning'},

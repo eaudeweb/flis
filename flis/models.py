@@ -264,7 +264,7 @@ class GMT(models.Model, BaseModel):
     source = models.ForeignKey(Source, related_name='gmts',
                                verbose_name='Source',
                                on_delete=models.PROTECT)
-    url = models.URLField(max_length=512, verbose_name='URL')
+    url = models.URLField(max_length=512, verbose_name='URL', null=True, blank=True)
     ownership = models.CharField(max_length=512, verbose_name='Ownership')
     summary = models.TextField(null=True, blank=True, default='',
                                verbose_name='Summary')
