@@ -92,6 +92,12 @@ class GeographicalScaleForm(CleanCountry, forms.ModelForm):
         model = models.GeographicalScale
 
 
+class ScenarioForm(CleanCountry, forms.ModelForm):
+
+   class Meta:
+        model = models.Scenario
+
+
 class GeographicalCoverageForm(CleanCountry, forms.ModelForm):
 
    class Meta:
