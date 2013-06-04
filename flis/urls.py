@@ -296,6 +296,6 @@ urlpatterns = patterns('',
 
     url(r'^management/', include(admin.site.urls)),
 
-    url(r'^(?P<country>\w+)/', include(flis_patterns)),
+    url(r'^(?P<country>[-\w]+)/', include(flis_patterns)),
 
 )
