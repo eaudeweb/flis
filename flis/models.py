@@ -1,12 +1,27 @@
 from django.db import models
 from django.conf import settings
-from django.utils.encoding import smart_unicode
 from django.core.urlresolvers import reverse
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.safestring import mark_safe
 from path import path
 from flis import markup
 
+LANGUAGES = [
+    ("sq", "Albanian"),
+    ("bs", "Bosnian"),
+    ("hr", "Croatian"),
+    ("cz", "Czech"),
+    ("en", "English"),
+    ("nl", "Dutch"),
+    ("fr", "French"),
+    ("de", "German"),
+    ("hu", "Hungarian"),
+    ("ga", "Irish"),
+    ("mk", "Macedonian"),
+    ("pt", "Portuguese"),
+    ("ro", "Romanian"),
+    ("sr", "Serbian"),
+    ("sk", "Slovak"),
+]
 
 class BaseModel():
 
@@ -110,6 +125,67 @@ class Trend(models.Model, BaseModel):
 
     def get_absolute_url(self):
         return reverse('trend_view', kwargs={
+          'pk': self.pk,
+          'country': self.country,
+        })
+
+
+class Blossom(models.Model, BaseModel):
+
+    NEW_OR_UPDATE_CHOICES = [
+        ('new', 'New'),
+        ('update', 'Update'),
+    ]
+    STATUSES = [
+        ('commissioned', 'Commissioned'),
+        ('independent', 'Independent'),
+        ('part-of-official-process', 'Part of official process'),
+    ]
+    country = models.ForeignKey(Country)
+    title = models.CharField(null=True, max_length=256,
+             verbose_name='Case study title')
+    new_or_update = models.CharField(max_length=16, choices=NEW_OR_UPDATE_CHOICES,
+        verbose_name='New Blossom or update of Blossom country study')
+    language = models.CharField(null=True, max_length=56, choices=LANGUAGES,
+        verbose_name='Language')
+    ownership = models.TextField(null=True, blank=True, default='',
+                               verbose_name='Who is ordering BLOSSOM')
+    status = models.CharField(null=True, max_length=56, choices=STATUSES,
+             verbose_name='Status')
+    who_is_doing = models.CharField(null=True, max_length=56,
+                   verbose_name='Who is doing BLOSSOM study')
+    purpose_and_target_audience = models.TextField(null=True, blank=True, default='',
+                                   verbose_name='Purpose and target audience')
+    stakeholders_study_planned = models.TextField(null=True, blank=True, default='',
+       verbose_name='Stakeholders involved in study (planned)')
+    stakeholders_study_final = models.TextField(null=True, blank=True, default='',
+       verbose_name='Stakeholders involved in study (final)')
+    stakeholders_review_planned = models.TextField(null=True, blank=True, default='',
+       verbose_name='Stakeholders involved in review of key messages (planned)')
+    stakeholders_review_final = models.TextField(null=True, blank=True, default='',
+       verbose_name='Stakeholders involved in review of key messages (final)')
+    time_plan_planned = models.TextField(null=True, blank=True, default='',
+       verbose_name='Time plan (planned)')
+    time_plan_final = models.TextField(null=True, blank=True, default='',
+       verbose_name='Time plan (final)')
+    date_of_conclusion_planned = models.DateTimeField(null=True, 
+        verbose_name='Date of conclusion (planned)')
+    date_of_conclusion_final = models.DateTimeField(null=True, 
+        verbose_name='Date of conclusion (final)')
+    project_team = models.TextField(null=True, blank=True, default='',
+       verbose_name='Project team')
+    stakeholders = models.TextField(null=True, blank=True, default='',
+       verbose_name='Stakeholders')
+    other_parties = models.TextField(null=True, blank=True, default='',
+       verbose_name='Other informal parties')
+    networks = models.TextField(null=True, blank=True, default='',
+       verbose_name='Networks')
+
+    def __unicode__(self):
+        return self.description
+
+    def get_absolute_url(self):
+        return reverse('blossom_view', kwargs={
           'pk': self.pk,
           'country': self.country,
         })

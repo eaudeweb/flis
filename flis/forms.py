@@ -80,6 +80,12 @@ class TrendForm(CleanCountry, forms.ModelForm):
         model = models.Trend
 
 
+class BlossomForm(CleanCountry, forms.ModelForm):
+
+    class Meta:
+        model = models.Blossom
+
+
 class ThematicCategoryForm(CleanCountry, forms.ModelForm):
 
     class Meta:

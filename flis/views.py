@@ -553,6 +553,54 @@ class TrendDelete(BaseQuerysetView, DeleteView):
         return reverse('trends', kwargs={'country': country})
 
 
+#BLOSSOM
+class Blossoms(BaseQuerysetView, ListView):
+
+    model = models.Blossom
+    template_name = 'blossoms/blossoms.html'
+    paginate_by = PER_PAGE
+
+
+class Blossom(BaseQuerysetView, DetailView):
+
+    model = models.Blossom
+    template_name = 'blossoms/blossom.html'
+
+
+class BlossomCreate(CreateView):
+
+    model = models.Blossom
+    template_name = 'blossoms/blossom_edit.html'
+    form_class = forms.BlossomForm
+
+    def get_context_data(self, *args, **kwargs):
+        country = self.request.country
+        context = super(BlossomCreate, self).get_context_data(*args, **kwargs)
+        context['cancel_url'] = reverse('blossoms', kwargs={'country': country})
+        return context
+
+
+class BlossomEdit(BaseQuerysetView, UpdateView):
+
+    model = models.Blossom
+    template_name = 'blossoms/blossom_edit.html'
+    form_class = forms.BlossomForm
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(BlossomEdit, self).get_context_data(*args, **kwargs)
+        context['cancel_url'] = context['object'].get_absolute_url()
+        return context
+
+
+class BlossomDelete(BaseQuerysetView, DeleteView):
+
+    model = models.Blossom
+
+    def get_success_url(self):
+        country = self.request.country
+        return reverse('blossoms', kwargs={'country': country})
+
+
 #Thematic category
 class ThematicCategories(BaseQuerysetView, ListView):
 
@@ -568,7 +616,7 @@ class ThematicCategory(BaseQuerysetView, DetailView):
     def get_context_data(self, *args, **kwargs):
         country = self.request.country
         context = super(ThematicCategory, self).get_context_data(*args, **kwargs)
-        context['cancel_url'] = reverse('trends', kwargs={'country': country})
+        context['cancel_url'] = reverse('thematic_categories', kwargs={'country': country})
         return context
 
 

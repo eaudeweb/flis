@@ -191,6 +191,24 @@ flis_patterns = patterns('',
         auth.edit_is_allowed(views.TrendDelete.as_view()),
         name='trend_delete'),
 
+#Blossom
+    url(r'^blossoms$', views.Blossoms.as_view(), name='blossoms'),
+
+    url(r'^blossoms/new$',
+        auth.edit_is_allowed(views.BlossomCreate.as_view()),
+        name='blossom_new'),
+
+    url(r'^blossoms/(?P<pk>\d+)/edit$',
+        auth.edit_is_allowed(views.BlossomEdit.as_view()),
+        name='blossom_edit'),
+
+    url(r'^blossoms/(?P<pk>\d+)/$', views.Blossom.as_view(), name='blossom_view'),
+
+    url(r'^blossoms/(?P<pk>\d+)/delete$',
+        auth.edit_is_allowed(views.BlossomDelete.as_view()),
+        name='blossom_delete'),
+
+#Thematic categories
     url(r'^settings/thematic_categories$', views.ThematicCategories.as_view(), name='thematic_categories'),
 
     url(r'^settings/thematic_categories/new$',
@@ -207,6 +225,7 @@ flis_patterns = patterns('',
         auth.edit_is_allowed(views.ThematicCategoryDelete.as_view()),
         name='thematic_category_delete'),
 
+#Geographical scales
     url(r'^settings/geographical_scales$', views.GeographicalScales.as_view(), name='geographical_scales'),
 
     url(r'^settings/geographical_scales/new$',
