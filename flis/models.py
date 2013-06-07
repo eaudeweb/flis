@@ -1,4 +1,5 @@
-from datetime import datetime
+from datetime import date
+from copy import deepcopy
 from django.db import models
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -39,13 +40,13 @@ class BaseModel():
                 continue
             field_name = field.verbose_name
             field_id = field.name
-            field_value = getattr(self, field.name, None)
+            field_value = deepcopy(getattr(self, field.name, None))
 
             page.tr()
             page.th(field_name, class_='span2')
 
-            if isinstance(field_value, datetime):
-              field_value = field_value.strftime(settings.DATETIME_FORMAT)
+            if isinstance(field_value, date):
+              field_value = field_value.strftime(settings.FLIS_DATE_FORMAT)
 
             if field_name == 'Source':
                 source = field_value
@@ -172,9 +173,9 @@ class Blossom(models.Model, BaseModel):
        verbose_name='Time plan (planned)')
     time_plan_final = models.TextField(null=True, blank=True, default='',
        verbose_name='Time plan (final)')
-    date_of_conclusion_planned = models.DateTimeField(null=True,
+    date_of_conclusion_planned = models.DateField(null=True,
         verbose_name='Date of conclusion (planned)')
-    date_of_conclusion_final = models.DateTimeField(null=True,
+    date_of_conclusion_final = models.DateField(null=True,
         verbose_name='Date of conclusion (final)')
     project_team = models.TextField(null=True, blank=True, default='',
        verbose_name='Project team')

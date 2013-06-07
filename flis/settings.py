@@ -169,7 +169,7 @@ LOGGING = {
     }
 }
 
-DATETIME_FORMAT = '%d/%m/%Y'
+FLIS_DATE_FORMAT = '%d/%m/%Y'
 
 try:
     from local_settings import *
