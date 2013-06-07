@@ -168,9 +168,9 @@ class Blossom(models.Model, BaseModel):
        verbose_name='Time plan (planned)')
     time_plan_final = models.TextField(null=True, blank=True, default='',
        verbose_name='Time plan (final)')
-    date_of_conclusion_planned = models.DateTimeField(null=True, 
+    date_of_conclusion_planned = models.DateTimeField(null=True,
         verbose_name='Date of conclusion (planned)')
-    date_of_conclusion_final = models.DateTimeField(null=True, 
+    date_of_conclusion_final = models.DateTimeField(null=True,
         verbose_name='Date of conclusion (final)')
     project_team = models.TextField(null=True, blank=True, default='',
        verbose_name='Project team')
@@ -182,7 +182,7 @@ class Blossom(models.Model, BaseModel):
        verbose_name='Networks')
 
     def __unicode__(self):
-        return self.description
+        return self.title
 
     def get_absolute_url(self):
         return reverse('blossom_view', kwargs={

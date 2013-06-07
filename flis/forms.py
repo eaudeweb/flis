@@ -85,6 +85,11 @@ class BlossomForm(CleanCountry, forms.ModelForm):
     class Meta:
         model = models.Blossom
 
+    def __init__(self, *args, **kwargs):
+         super(BlossomForm, self).__init__(*args, **kwargs)
+         self.fields['date_of_conclusion_planned'].input_formats = ['%d/%m/%Y']
+         self.fields['date_of_conclusion_final'].input_formats = ['%d/%m/%Y']
+
 
 class ThematicCategoryForm(CleanCountry, forms.ModelForm):
 
