@@ -10,18 +10,22 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
 
         # Changing field 'Blossom.date_of_conclusion_final'
-        db.alter_column('flis_blossom', 'date_of_conclusion_final', self.gf('django.db.models.fields.DateTimeField')(null=True))
+        #db.alter_column('flis_blossom', 'date_of_conclusion_final', self.gf('django.db.models.fields.DateTimeField')(null=True))
+        db.delete_column('flis_blossom', 'date_of_conclusion_final')
+        db.add_column('flis_blossom', 'date_of_conclusion_final', self.gf('django.db.models.fields.DateTimeField')(null=True))
 
         # Changing field 'Blossom.date_of_conclusion_planned'
-        db.alter_column('flis_blossom', 'date_of_conclusion_planned', self.gf('django.db.models.fields.DateTimeField')(null=True))
+        #db.alter_column('flis_blossom', 'date_of_conclusion_planned', self.gf('django.db.models.fields.DateTimeField')(null=True))
 
     def backwards(self, orm):
 
         # Changing field 'Blossom.date_of_conclusion_final'
-        db.alter_column('flis_blossom', 'date_of_conclusion_final', self.gf('django.db.models.fields.CharField')(max_length=56, null=True))
+        #db.alter_column('flis_blossom', 'date_of_conclusion_final', self.gf('django.db.models.fields.CharField')(max_length=56, null=True))
+        db.delete_column('flis_blossom', 'date_of_conclusion_final')
+        db.add_column('flis_blossom', 'date_of_conclusion_final', self.gf('django.db.models.fields.CharField')(max_length=56, null=True))
 
         # Changing field 'Blossom.date_of_conclusion_planned'
-        db.alter_column('flis_blossom', 'date_of_conclusion_planned', self.gf('django.db.models.fields.CharField')(max_length=56, null=True))
+        #db.alter_column('flis_blossom', 'date_of_conclusion_planned', self.gf('django.db.models.fields.CharField')(max_length=56, null=True))
 
     models = {
         'flis.blossom': {
