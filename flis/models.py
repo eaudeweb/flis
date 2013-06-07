@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -42,6 +43,9 @@ class BaseModel():
 
             page.tr()
             page.th(field_name, class_='span2')
+
+            if isinstance(field_value, datetime):
+              field_value = field_value.strftime(settings.DATETIME_FORMAT)
 
             if field_name == 'Source':
                 source = field_value
