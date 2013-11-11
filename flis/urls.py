@@ -11,7 +11,7 @@ flis_patterns = patterns('',
     url(r'^$', views.Interlinks.as_view(), name='interlinks'),
 
     url(r'^interlinks/new/$',
-        auth.edit_is_allowed(views.InterlinkCreate.as_view()),
+        auth.edit_is_allowed(views.InterlinkCreate.as_view(), check_country=True),
         name='interlink_new'),
 
     url(r'^interlinks/(?P<pk>\d+)/edit/$',

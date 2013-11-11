@@ -11,6 +11,7 @@ from flis import markup
 
 from constants import LANGUAGES
 
+
 class BaseModel():
 
     def as_table(self):
@@ -63,15 +64,14 @@ class BaseModel():
 
 class Country(models.Model):
 
-  iso = models.CharField(max_length=128, primary_key=True)
-  name = models.CharField(max_length=256)
+    iso = models.CharField(max_length=128, primary_key=True)
+    name = models.CharField(max_length=256)
 
-  class Meta(object):
+    class Meta(object):
+        verbose_name_plural = 'Countries'
 
-    verbose_name_plural = 'Countries'
-
-  def __unicode__(self):
-    return self.iso
+    def __unicode__(self):
+        return self.iso
 
 
 class Source(models.Model, BaseModel):
