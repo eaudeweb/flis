@@ -7,9 +7,10 @@ class CountryFactory(factory.DjangoModelFactory):
     FACTORY_FOR = models.Country
 
 
-class InterlinkFactory(factory.DjangoModelFactory):
+class ROCountryFactory(CountryFactory):
 
-    FACTORY_FOR = models.Interlink
+    iso = 'ro'
+    name = 'Romania'
 
 
 class SteepCategoryFactory(factory.DjangoModelFactory):
@@ -22,7 +23,7 @@ class SteepCategoryFactory(factory.DjangoModelFactory):
 
 class SourceFactory(factory.DjangoModelFactory):
 
-    FACTORY_FOR = models.SourceFactory
+    FACTORY_FOR = models.Source
 
     short_name = 'short_name'
     long_name = 'long_name'
@@ -68,7 +69,7 @@ class GeographicalScaleFactory(factory.DjangoModelFactory):
     description = 'geo_scale_description'
 
 
-class GeographicalCoverage(factory.DjangoModelFactory):
+class GeographicalCoverageFactory(factory.DjangoModelFactory):
 
     FACTORY_FOR = models.GeographicalCoverage
 
@@ -85,13 +86,13 @@ class TimelineFactory(factory.DjangoModelFactory):
 
 class IndicatorFactory(factory.DjangoModelFactory):
 
-    FACTORY_FOR = Indicator
+    FACTORY_FOR = models.Indicator
 
     code = factory.Sequence(lambda n: 'indicator_{0}'.format(n))
     description = 'indicator_description'
     thematic_category = factory.SubFactory(ThematicCategoryFactory)
-    geographical_scale = factory.SubFactory(GeographicalScale)
-    geo_coverage = factory.SubFactory(GeographicalCoverage)
+    geographical_scale = factory.SubFactory(GeographicalScaleFactory)
+    geographical_coverage = factory.SubFactory(GeographicalCoverageFactory)
     timeline = factory.SubFactory(TimelineFactory)
     source = factory.SubFactory(SourceFactory)
     base_year = '2000'
@@ -100,6 +101,8 @@ class IndicatorFactory(factory.DjangoModelFactory):
 
 
 class InterlinkFactory(factory.DjangoModelFactory):
+
+    FACTORY_FOR = models.Interlink
 
     gmt = factory.SubFactory(GMTFactory)
     trend = factory.SubFactory(TrendFactory)

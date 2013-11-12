@@ -588,5 +588,5 @@ class Interlink(models.Model, BaseModel):
     def get_absolute_url(self):
         return reverse('interlink_view', kwargs={
          'pk': self.pk,
-         'country': country,
+         'country': self.country,
         })
