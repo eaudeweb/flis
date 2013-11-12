@@ -47,10 +47,11 @@ class BaseWebTest(WebTest):
         return form
 
     def normalize_data(self, data):
-        for k, v in data.items():
+        new_data = dict(data)
+        for k, v in new_data.items():
             if isinstance(v, Model):
-                data[k] = v.pk
-        return data
+                new_data[k] = str(v.pk)
+        return new_data
 
     def reverse(self, view_name, *args, **kwargs):
         return reverse(view_name, args=args, kwargs=kwargs)

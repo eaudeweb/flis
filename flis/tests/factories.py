@@ -92,7 +92,7 @@ class IndicatorFactory(factory.DjangoModelFactory):
     description = 'indicator_description'
     thematic_category = factory.SubFactory(ThematicCategoryFactory)
     geographical_scale = factory.SubFactory(GeographicalScaleFactory)
-    geographical_coverage = factory.SubFactory(GeographicalCoverageFactory)
+    # geographical_coverage = factory.SubFactory(GeographicalCoverageFactory)
     timeline = factory.SubFactory(TimelineFactory)
     source = factory.SubFactory(SourceFactory)
     base_year = '2000'
