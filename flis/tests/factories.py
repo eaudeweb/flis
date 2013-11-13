@@ -100,10 +100,22 @@ class IndicatorFactory(factory.DjangoModelFactory):
     ownership = 'ownership'
 
 
+class UncertaintyFactory(factory.DjangoModelFactory):
+
+    FACTORY_FOR = models.Uncertainty
+
+    code = factory.Sequence(lambda n: 'uncertainty_{0}'.format(n))
+    steep_category = factory.SubFactory(SteepCategoryFactory)
+    description = 'uncertainty_description'
+    source = factory.SubFactory(SourceFactory)
+    ownership = 'ownership'
+
+
 class InterlinkFactory(factory.DjangoModelFactory):
 
     FACTORY_FOR = models.Interlink
 
     gmt = factory.SubFactory(GMTFactory)
     trend = factory.SubFactory(TrendFactory)
+    uncertainty = factory.SubFactory(UncertaintyFactory)
     indicator_1 = factory.SubFactory(IndicatorFactory)

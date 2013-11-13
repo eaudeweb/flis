@@ -27,7 +27,10 @@ class InterlinksPermTests(BaseWebTest):
         self.assertObjectInDatabase('Interlink', pk=1,
                                     gmt=data['gmt'],
                                     trend=data['trend'],
-                                    indicator_1=data['indicator_1'])
+                                    indicator_1=data['indicator_1'],
+                                    uncertainty=data['uncertainty'],
+                                    country=self.country,
+                                    user_id='admin')
 
     @patch('flis.frame.requests')
     def test_interlinks_new_ro_group_perm(self, mock_requests):
@@ -42,7 +45,10 @@ class InterlinksPermTests(BaseWebTest):
         self.assertObjectInDatabase('Interlink', pk=1,
                                     gmt=data['gmt'],
                                     trend=data['trend'],
-                                    indicator_1=data['indicator_1'])
+                                    indicator_1=data['indicator_1'],
+                                    uncertainty=data['uncertainty'],
+                                    country=self.country,
+                                    user_id='john')
 
     @patch('flis.frame.requests')
     def test_interlinks_new_anonymous_perm_fails(self, mock_requests):
@@ -70,6 +76,7 @@ class InterlinksPermTests(BaseWebTest):
         data = {
             'trend': trend,
             'gmt': interlink.gmt,
+            'uncertainty': interlink.uncertainty,
             'indicator_1': interlink.indicator_1,
         }
         url = self.reverse('interlink_edit', country='ro', pk=interlink.pk)
@@ -80,7 +87,10 @@ class InterlinksPermTests(BaseWebTest):
         self.assertObjectInDatabase('Interlink', pk=1,
                                     trend=trend,
                                     gmt=data['gmt'],
-                                    indicator_1=data['indicator_1'])
+                                    indicator_1=data['indicator_1'],
+                                    uncertainty=data['uncertainty'],
+                                    user_id='admin',
+                                    country=self.country)
 
     @patch('flis.frame.requests')
     def test_interlinks_edit_anonymous_perm_fails(self, mock_requests):

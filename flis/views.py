@@ -50,6 +50,12 @@ class InterlinkCreate(CreateView):
         context['cancel_url'] = reverse('interlinks', kwargs={'country': country})
         return context
 
+    def get_form_kwargs(self):
+        kwargs = super(InterlinkCreate, self).get_form_kwargs()
+        kwargs['country'] = self.request.country
+        kwargs['user_id'] = self.request.user_id
+        return kwargs
+
 
 class InterlinkEdit(UpdateView):
 
@@ -61,6 +67,12 @@ class InterlinkEdit(UpdateView):
         context = super(InterlinkEdit, self).get_context_data(*args, **kwargs)
         context['cancel_url'] = context['object'].get_absolute_url()
         return context
+
+    def get_form_kwargs(self):
+        kwargs = super(InterlinkEdit, self).get_form_kwargs()
+        kwargs['country'] = self.request.country
+        kwargs['user_id'] = self.request.user_id
+        return kwargs
 
 
 class InterlinkDelete(DeleteView):

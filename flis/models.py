@@ -562,10 +562,13 @@ class EarlyWarning(models.Model, BaseModel):
 class Interlink(models.Model, BaseModel):
 
     country = models.ForeignKey(Country)
+    user_id = models.CharField(max_length=128)
     gmt = models.ForeignKey(GMT, related_name='interlinks', verbose_name='GMT')
-    trend = models.ForeignKey(Trend, related_name='interlinks',
-                              verbose_name='Trend',
+    trend = models.ForeignKey(Trend, related_name='interlinks', verbose_name='Trend',
                               on_delete=models.PROTECT)
+    uncertainty = models.ForeignKey(Uncertainty, related_name='interlinks',
+                                    on_delete=models.PROTECT, null=True,
+                                    blank=False)
     indicator_1 = models.ForeignKey(Indicator, related_name='interlinks_indicator_1',
                                     verbose_name='Indicator',
                                     on_delete=models.PROTECT)

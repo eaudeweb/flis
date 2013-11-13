@@ -4,20 +4,23 @@ from django_tools.middlewares import ThreadLocal
 from flis import models
 
 
-class CleanCountry(object):
-
-    def clean_country(self):
-        data = self.cleaned_data['country']
-        request = ThreadLocal.get_current_request()
-        if not request.country == data:
-            raise forms.ValidationError('Country not valid')
-        return data
-
-
-class InterlinkForm(CleanCountry, forms.ModelForm):
+class InterlinkForm(forms.ModelForm):
 
     class Meta:
         model = models.Interlink
+        exclude = ('country', 'user_id',)
+
+    def __init__(self, *args, **kwargs):
+        self.country = kwargs.pop('country')
+        self.user_id = kwargs.pop('user_id')
+        super(InterlinkForm, self).__init__(*args, **kwargs)
+
+    def save(self):
+        obj = super(InterlinkForm, self).save(commit=False)
+        obj.country = self.country
+        obj.user_id = self.user_id
+        obj.save()
+        return obj
 
 
 class SourceForm(forms.ModelForm):
