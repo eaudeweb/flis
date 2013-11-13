@@ -17,7 +17,10 @@ USER_RO_GROUP_DATA = {'user_id': 'john', 'user_roles': [],
                       'groups':[['eionet-nrc-forwardlooking-mc-ro', 'Romania']]}
 USER_DK_GROUP_DATA = {'user_id': 'john', 'user_roles': [],
                     'groups':[['eionet-nrc-forwardlooking-mc-dk', 'Denmark']]}
+USER_BLANK_ADMIN_DATA = {'user_id': '', 'user_roles': ['Administrator'],
+                         'groups': []}
 user_admin_mock = Mock(status_code=200, json=USER_ADMIN_DATA)
+user_blank_admin_mock = Mock(status_code=200, json=USER_BLANK_ADMIN_DATA)
 user_anonymous_mock = Mock(status_code=200, json=USER_ANONYMOUS_DATA)
 user_ro_group_mock = Mock(status_code=200, json=USER_RO_GROUP_DATA)
 user_dk_group_mock = Mock(status_code=200, json=USER_DK_GROUP_DATA)

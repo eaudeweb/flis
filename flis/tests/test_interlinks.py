@@ -1,7 +1,7 @@
 from mock import patch
 from .base import BaseWebTest
 from .base import user_admin_mock, user_anonymous_mock
-from .base import user_ro_group_mock, user_dk_group_mock
+from .base import user_ro_group_mock, user_dk_group_mock, user_blank_admin_mock
 from .factories import ROCountryFactory, InterlinkFactory, TrendFactory
 
 
@@ -31,6 +31,24 @@ class InterlinksPermTests(BaseWebTest):
                                     uncertainty=data['uncertainty'],
                                     country=self.country,
                                     user_id='admin')
+
+    @patch('flis.frame.requests')
+    def test_interlinks_new_with_blank_admin_user_perm(self, mock_requests):
+        mock_requests.get.return_value = user_blank_admin_mock
+        data = InterlinkFactory.attributes(create=True)
+        url = self.reverse('interlink_new', country='ro')
+        resp = self.app.get(url)
+        self.assertEqual(200, resp.status_code)
+        form = resp.forms['interlink-edit']
+        self.populate_fields(form, self.normalize_data(data))
+        form.submit().follow()
+        self.assertObjectInDatabase('Interlink', pk=1,
+                                    gmt=data['gmt'],
+                                    trend=data['trend'],
+                                    indicator_1=data['indicator_1'],
+                                    uncertainty=data['uncertainty'],
+                                    country=self.country,
+                                    user_id='')
 
     @patch('flis.frame.requests')
     def test_interlinks_new_ro_group_perm(self, mock_requests):

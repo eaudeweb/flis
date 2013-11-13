@@ -12,7 +12,7 @@ class InterlinkForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.country = kwargs.pop('country')
-        self.user_id = kwargs.pop('user_id')
+        self.user_id = kwargs.pop('user_id') or ''
         super(InterlinkForm, self).__init__(*args, **kwargs)
 
     def save(self):

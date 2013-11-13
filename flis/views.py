@@ -53,7 +53,7 @@ class InterlinkCreate(CreateView):
     def get_form_kwargs(self):
         kwargs = super(InterlinkCreate, self).get_form_kwargs()
         kwargs['country'] = self.request.country
-        kwargs['user_id'] = self.request.user_id
+        kwargs['user_id'] = getattr(self.request, 'user_id', None)
         return kwargs
 
 
